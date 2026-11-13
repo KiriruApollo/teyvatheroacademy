@@ -1,0 +1,19 @@
+
+[
+  {
+    "title": "You Say Run",
+    "src": "assets/audio/You_Say_Run.mp3"
+  },
+  {
+    "title": "Genshin Impact",
+    "src": "assets/audio/genshin.mp3"
+  },
+  {
+    "title": "Honkai: Star Rail",
+    "src": "assets/audio/honkai-star-rail.mp3"
+  },
+  {
+    "title": "Zenless Zone Zero",
+    "src": "assets/audio/zenless-zone-zero.mp3"
+  }
+]

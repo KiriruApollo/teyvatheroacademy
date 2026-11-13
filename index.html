@@ -34,7 +34,42 @@ main{max-width:1120px;margin:0 auto;padding:26px 20px 110px}
 .kicker{display:inline-block;background:var(--yellow);color:var(--ink);border:2px solid var(--ink);padding:6px 10px;font-size:11px;font-weight:1000;letter-spacing:1.5px;transform:rotate(-2deg)}
 h1{font-size:clamp(38px,7vw,76px);line-height:.9;margin:20px 0 14px;text-transform:uppercase;letter-spacing:-3px;text-shadow:4px 4px 0 var(--ink)}
 .hero p{max-width:520px;line-height:1.6;color:#edf5ff}
-.burst{margin:auto;width:min(270px,75vw);aspect-ratio:1;display:grid;place-items:center;background:var(--yellow);color:var(--ink);clip-path:polygon(50% 0%,60% 25%,83% 8%,77% 34%,100% 40%,78% 55%,95% 78%,66% 72%,50% 100%,39% 73%,10% 91%,23% 62%,0 48%,27% 39%,12% 14%,41% 27%);font-weight:1000;text-align:center;font-size:clamp(24px,4vw,42px);line-height:.95;text-shadow:2px 2px white;transform:rotate(7deg);filter:drop-shadow(5px 5px 0 var(--ink))}
+.burst {
+  margin: auto;
+  width: min(310px, 82vw);
+  aspect-ratio: 1;
+
+  display: grid;
+  place-items: center;
+
+  background: var(--yellow);
+  color: var(--ink);
+
+  clip-path: polygon(
+    50% 0%, 60% 25%, 83% 8%, 77% 34%,
+    100% 40%, 78% 55%, 95% 78%, 66% 72%,
+    50% 100%, 39% 73%, 10% 91%, 23% 62%,
+    0 48%, 27% 39%, 12% 14%, 41% 27%
+  );
+
+  font-weight: 1000;
+  text-align: center;
+  font-size: clamp(26px, 4.5vw, 46px);
+  line-height: 1.1;
+  text-shadow: 2px 2px white;
+
+  transform: rotate(7deg);
+  filter: drop-shadow(5px 5px 0 var(--ink));
+
+  padding: 0 12%;
+box-sizing: border-box;
+}
+.burst span {
+  display: block;
+  width: 100%;
+  text-align: center;
+  transform: scale(0.85);
+}
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:var(--yellow);color:var(--ink);border:3px solid var(--ink);box-shadow:4px 4px 0 var(--ink);padding:12px 17px;text-decoration:none;font-weight:1000;text-transform:uppercase;font-size:12px;letter-spacing:.5px;transition:.12s}
 .btn:hover{transform:translate(2px,2px);box-shadow:2px 2px 0 var(--ink)}
 .btn.red{background:var(--red);color:white}.btn.blue{background:var(--blue2);color:white}
@@ -66,12 +101,70 @@ h1{font-size:clamp(38px,7vw,76px);line-height:.9;margin:20px 0 14px;text-transfo
 .secret input:focus{box-shadow:3px 3px 0 var(--yellow)}
 .secret-result{display:none;margin-top:20px;padding:20px;background:#eaf5ff;border:3px dashed var(--blue);text-align:left}
 .secret-result.show{display:block}
-.music{position:fixed;z-index:30;bottom:14px;left:14px;right:14px;max-width:480px;margin:auto;background:#172235;color:white;border:3px solid #0b1220;box-shadow:4px 4px 0 #0008;padding:10px 12px;display:flex;align-items:center;gap:10px}
-.music .music-meta{min-width:0;flex:1}.music strong{display:block;font-size:11px;letter-spacing:.7px}.music small{display:block;color:#c8d2e1;font-size:10px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.music button{border:2px solid white;background:var(--yellow);color:var(--ink);font-weight:1000;width:34px;height:32px}
-.music input[type=range]{width:65px;accent-color:var(--yellow)}
-.music input[type=file]{display:none}
-.music .load{font-size:10px;color:#fff;cursor:pointer;text-decoration:underline;white-space:nowrap}
+.music {
+  position:fixed;
+  z-index:30;
+  bottom:14px;
+  left:14px;
+  right:14px;
+  max-width:480px;
+  margin:auto;
+  background:#172235;
+  color:white;
+  border:3px solid #0b1220;
+  box-shadow:4px 4px 0 #0008;
+  padding:10px 12px;
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.music .music-meta {
+  min-width:0;
+  flex:1;
+}
+
+.music strong {
+  display:block;
+  font-size:11px;
+  letter-spacing:.7px;
+}
+
+.music small {
+  display:block;
+  color:#c8d2e1;
+  font-size:10px;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+
+.music button {
+  border:2px solid white;
+  background:var(--yellow);
+  color:var(--ink);
+  font-weight:1000;
+  width:34px;
+  height:32px;
+  flex:0 0 auto;
+  cursor:pointer;
+}
+
+.music input[type=range] {
+  width:65px;
+  accent-color:var(--yellow);
+  flex:0 0 auto;
+}
+
+@media(max-width:480px) {
+  .music {
+    gap:7px;
+  }
+
+  .music input[type=range] {
+    width:48px;
+  }
+}
 .footer{margin-top:40px;text-align:center;font-size:11px;color:#788396}
 .comic-label{display:inline-block;background:var(--red);color:white;padding:6px 9px;font-weight:1000;transform:rotate(-2deg);border:2px solid var(--ink)}
 @media(max-width:760px){
@@ -109,7 +202,11 @@ h1{font-size:clamp(38px,7vw,76px);line-height:.9;margin:20px 0 14px;text-transfo
    <p>Un nuevo universo. Nuevas alianzas. Una academia donde héroes de distintos mundos escriben una historia en común.</p>
    <button class="btn" onclick="go('universe')">EXPLORE THE ACADEMY ↗</button>
   </div>
-  <div class="hero-art"><div class="burst">PLUS<br>ULTRA!</div></div>
+ <div class="hero-art">
+  <div class="burst">
+    <span>PLUS<br>ULTRA!</span>
+  </div>
+</div>
  </div>
  <div class="section-head"><div><span class="comic-label">CHOOSE YOUR DESTINY</span><h2>Explorá la academia</h2></div></div>
  <div class="tile-grid">
@@ -137,28 +234,6 @@ h1{font-size:clamp(38px,7vw,76px);line-height:.9;margin:20px 0 14px;text-transfo
  </div>
 </section>
 
-<section id="characters" class="page">
- <span class="comic-label">FILE 02 · STUDENT ROSTER</span>
- <div class="section-head"><div><h2>Personajes</h2><p>Expedientes de la academia.</p></div></div>
- <div class="notice">Estas son fichas de ejemplo. Después podemos incorporar imágenes, personajes, disponibilidad y datos reales del grupo.</div>
- <div class="cards" style="margin-top:18px">
-  <article class="character"><div class="portrait">✦</div><div class="details"><span class="status">Disponible · ejemplo</span><h3>Nombre del personaje</h3><p><b>Origen:</b> Genshin Impact</p><p><b>Don:</b> Habilidad adaptada al universo.</p></div></article>
-  <article class="character"><div class="portrait">✧</div><div class="details"><span class="status">Disponible · ejemplo</span><h3>Nombre del personaje</h3><p><b>Origen:</b> Honkai: Star Rail</p><p><b>Don:</b> Habilidad adaptada al universo.</p></div></article>
-  <article class="character"><div class="portrait">⚡</div><div class="details"><span class="status">Disponible · ejemplo</span><h3>Nombre del personaje</h3><p><b>Origen:</b> Zenless Zone Zero</p><p><b>Don:</b> Habilidad adaptada al universo.</p></div></article>
- </div>
-</section>
-
-<section id="characters" class="page">
- <span class="comic-label">FILE 02 · STUDENT ROSTER</span>
- <div class="section-head"><div><h2>Personajes</h2><p>Expedientes de la academia.</p></div></div>
- <div class="notice">Estas son fichas de ejemplo. Después podemos incorporar imágenes, personajes, disponibilidad y datos reales del grupo.</div>
- <div class="cards" style="margin-top:18px">
-  <article class="character"><div class="portrait">✦</div><div class="details"><span class="status">Disponible · ejemplo</span><h3>Nombre del personaje</h3><p><b>Origen:</b> Genshin Impact</p><p><b>Don:</b> Habilidad adaptada al universo.</p></div></article>
-  <article class="character"><div class="portrait">✧</div><div class="details"><span class="status">Disponible · ejemplo</span><h3>Nombre del personaje</h3><p><b>Origen:</b> Honkai: Star Rail</p><p><b>Don:</b> Habilidad adaptada al universo.</p></div></article>
-  <article class="character"><div class="portrait">⚡</div><div class="details"><span class="status">Disponible · ejemplo</span><h3>Nombre del personaje</h3><p><b>Origen:</b> Zenless Zone Zero</p><p><b>Don:</b> Habilidad adaptada al universo.</p></div></article>
- </div>
-</section>
-
 <section id="rules" class="page">
  <span class="comic-label">FILE 03 · ACADEMY CODE</span>
  <div class="section-head"><div><h2>Reglamento</h2><p>Las reglas para jugar en equipo.</p></div></div>
@@ -171,6 +246,17 @@ h1{font-size:clamp(38px,7vw,76px);line-height:.9;margin:20px 0 14px;text-transfo
    <li><b>Comunicación.</b> Avisar a la administración ante dudas, ausencias o conflictos.</li>
   </ol>
   <p><em>Reglamento ilustrativo: reemplazar o ampliar con las normas oficiales del grupo.</em></p>
+ </div>
+</section>
+
+<section id="characters" class="page">
+ <span class="comic-label">FILE 02 · STUDENT ROSTER</span>
+ <div class="section-head"><div><h2>Personajes</h2><p>Expedientes de la academia.</p></div></div>
+ <div class="notice">Estas son fichas de ejemplo. Después podemos incorporar imágenes, personajes, disponibilidad y datos reales del grupo.</div>
+ <div class="cards" style="margin-top:18px">
+  <article class="character"><div class="portrait">✦</div><div class="details"><span class="status">Disponible · ejemplo</span><h3>Nombre del personaje</h3><p><b>Origen:</b> Genshin Impact</p><p><b>Don:</b> Habilidad adaptada al universo.</p></div></article>
+  <article class="character"><div class="portrait">✧</div><div class="details"><span class="status">Disponible · ejemplo</span><h3>Nombre del personaje</h3><p><b>Origen:</b> Honkai: Star Rail</p><p><b>Don:</b> Habilidad adaptada al universo.</p></div></article>
+  <article class="character"><div class="portrait">⚡</div><div class="details"><span class="status">Disponible · ejemplo</span><h3>Nombre del personaje</h3><p><b>Origen:</b> Zenless Zone Zero</p><p><b>Don:</b> Habilidad adaptada al universo.</p></div></article>
  </div>
 </section>
 
@@ -209,12 +295,27 @@ h1{font-size:clamp(38px,7vw,76px);line-height:.9;margin:20px 0 14px;text-transfo
 </main>
 
 <div class="music" aria-label="Reproductor musical">
- <button id="play" title="Reproducir o pausar">▶</button>
- <div class="music-meta"><strong>ACADEMY SOUNDTRACK</strong><small id="track-name">Cargá tus archivos de música para comenzar</small></div>
- <label class="load" for="audio-files">＋ CARGAR</label>
- <input id="audio-files" type="file" accept="audio/*" multiple>
- <input id="volume" type="range" min="0" max="1" step=".01" value=".45" title="Volumen">
- <audio id="audio" preload="none"></audio>
+  <button id="play" title="Reproducir o pausar">▶</button>
+
+  <div class="music-meta">
+    <strong>ACADEMY SOUNDTRACK</strong>
+    <small id="track-name">Cargando playlist...</small>
+  </div>
+
+  <button id="previous-track" title="Pista anterior">|◀</button>
+  <button id="next-track" title="Pista siguiente">▶|</button>
+
+  <input
+    id="volume"
+    type="range"
+    min="0"
+    max="1"
+    step=".01"
+    value=".45"
+    title="Volumen"
+  >
+
+  <audio id="audio" preload="none"></audio>
 </div>
 
 <script>
@@ -241,37 +342,145 @@ document.getElementById('pass-form').addEventListener('submit',e=>{
 });
 
 // Música local: elegís varios archivos y se reproducen en secuencia.
-const audio=document.getElementById('audio');
-const filesInput=document.getElementById('audio-files');
-const playButton=document.getElementById('play');
-const trackName=document.getElementById('track-name');
-let playlist=[],trackIndex=0;
-audio.volume=.45;
-document.getElementById('volume').addEventListener('input',e=>audio.volume=Number(e.target.value));
-filesInput.addEventListener('change',()=>{
- playlist=Array.from(filesInput.files||[]);
- trackIndex=0;
- if(playlist.length) loadTrack(true);
+
+// Playlist pública alojada en el repositorio GitHub.
+const audio = document.getElementById('audio');
+const playButton = document.getElementById('play');
+const previousButton = document.getElementById('previous-track');
+const nextButton = document.getElementById('next-track');
+const trackName = document.getElementById('track-name');
+const volumeControl = document.getElementById('volume');
+
+let playlist = [];
+let trackIndex = 0;
+
+audio.volume = 0.45;
+
+// Control de volumen.
+volumeControl.addEventListener('input', () => {
+  audio.volume = Number(volumeControl.value);
 });
-function loadTrack(autoplay){
- if(!playlist.length)return;
- const file=playlist[trackIndex];
- audio.src=URL.createObjectURL(file);
- trackName.textContent=(trackIndex+1)+'/'+playlist.length+' · '+file.name;
- if(autoplay) audio.play().then(()=>playButton.textContent='Ⅱ').catch(()=>playButton.textContent='▶');
+
+// Cargar canción seleccionada.
+function loadTrack(autoplay = false) {
+  if (!playlist.length) return;
+
+  const track = playlist[trackIndex];
+
+  audio.src = track.src;
+  trackName.textContent =
+    `${trackIndex + 1}/${playlist.length} · ${track.title}`;
+
+  if (autoplay) {
+    audio.play().catch(() => {
+      trackName.textContent =
+        `${track.title} · Tocá ▶ para reproducir`;
+    });
+  }
 }
-playButton.addEventListener('click',()=>{
- if(!playlist.length){filesInput.click();return;}
- if(audio.paused){audio.play().then(()=>playButton.textContent='Ⅱ').catch(()=>{});}
- else{audio.pause();playButton.textContent='▶';}
+
+// Siguiente canción.
+function playNext() {
+  if (!playlist.length) return;
+
+  trackIndex = (trackIndex + 1) % playlist.length;
+  loadTrack(true);
+}
+
+// Canción anterior.
+function playPrevious() {
+  if (!playlist.length) return;
+
+  if (audio.currentTime > 3) {
+    audio.currentTime = 0;
+    return;
+  }
+
+  trackIndex =
+    (trackIndex - 1 + playlist.length) % playlist.length;
+
+  loadTrack(true);
+}
+
+// Reproducir / pausar.
+playButton.addEventListener('click', () => {
+  if (!playlist.length) {
+    trackName.textContent = 'No hay canciones disponibles.';
+    return;
+  }
+
+  if (audio.paused) {
+    audio.play().catch(() => {});
+  } else {
+    audio.pause();
+  }
 });
-audio.addEventListener('ended',()=>{
- if(!playlist.length)return;
- trackIndex=(trackIndex+1)%playlist.length;
- loadTrack(true);
+
+// Controles de navegación.
+previousButton.addEventListener('click', playPrevious);
+nextButton.addEventListener('click', playNext);
+
+// Cambio automático al terminar una canción.
+audio.addEventListener('ended', playNext);
+
+// Actualizar icono.
+audio.addEventListener('play', () => {
+  playButton.textContent = 'Ⅱ';
 });
-audio.addEventListener('pause',()=>playButton.textContent='▶');
-audio.addEventListener('play',()=>playButton.textContent='Ⅱ');
+
+audio.addEventListener('pause', () => {
+  playButton.textContent = '▶';
+});
+
+// Aviso de errores.
+audio.addEventListener('error', () => {
+  if (playlist.length) {
+    trackName.textContent =
+      `No se pudo cargar: ${playlist[trackIndex].title}`;
+  }
+});
+
+// Leer playlist desde GitHub.
+async function loadRepositoryPlaylist() {
+  try {
+    const response = await fetch(
+      './assets/audio/playlist.json',
+      { cache: 'no-store' }
+    );
+
+    if (!response.ok) {
+      throw new Error('No se encontró playlist.json');
+    }
+
+    const tracks = await response.json();
+
+    if (!Array.isArray(tracks) || tracks.length === 0) {
+      throw new Error('La playlist está vacía');
+    }
+
+    playlist = tracks.filter(track =>
+      track &&
+      typeof track.title === 'string' &&
+      typeof track.src === 'string'
+    );
+
+    if (!playlist.length) {
+      throw new Error('No hay canciones válidas');
+    }
+
+    trackIndex = 0;
+    loadTrack(false);
+
+  } catch (error) {
+    console.error(error);
+
+    trackName.textContent =
+      'No se pudo cargar la playlist del repositorio.';
+  }
+}
+
+// Inicializar reproductor.
+loadRepositoryPlaylist();
 </script>
 </body>
 </html>
