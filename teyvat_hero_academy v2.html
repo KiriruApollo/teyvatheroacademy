@@ -1,0 +1,277 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#1f4e91">
+<title>Teyvat Hero Academy</title>
+<style>
+:root{
+  --blue:#20549a; --blue2:#2f7ac2; --yellow:#ffd447; --red:#e94b4b;
+  --ink:#172235; --paper:#fffdf5; --muted:#667085; --line:#172235;
+  --shadow:5px 5px 0 var(--ink);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:#f5f7fb;color:var(--ink);font-family:Arial,Helvetica,sans-serif}
+button,input,textarea{font:inherit}
+button{cursor:pointer}
+.site-header{position:sticky;top:0;z-index:20;background:var(--blue);color:white;border-bottom:4px solid var(--ink);box-shadow:0 3px 0 #ffffff55}
+.header-inner{max-width:1120px;margin:auto;padding:12px 20px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.brand{display:flex;align-items:center;gap:10px;color:white;text-decoration:none;font-weight:1000;letter-spacing:.4px}
+.brand-mark{display:grid;place-items:center;width:42px;height:42px;background:var(--yellow);color:var(--ink);border:3px solid var(--ink);transform:rotate(-5deg);font-size:21px;box-shadow:3px 3px 0 var(--ink)}
+.brand small{display:block;font-size:10px;letter-spacing:2px;color:#d9e8ff}
+.nav{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}
+.nav button{border:2px solid transparent;background:transparent;color:white;padding:9px 10px;font-weight:900;font-size:11px;letter-spacing:.6px}
+.nav button:hover,.nav button.active{background:var(--yellow);color:var(--ink);border-color:var(--ink);box-shadow:2px 2px 0 var(--ink);transform:translate(-1px,-1px)}
+main{max-width:1120px;margin:0 auto;padding:26px 20px 110px}
+.page{display:none;animation:pop .22s ease-out}
+.page.active{display:block}
+@keyframes pop{from{opacity:.35;transform:translateY(8px)}to{opacity:1;transform:none}}
+.hero{position:relative;overflow:hidden;background:var(--blue);color:white;border:4px solid var(--ink);box-shadow:var(--shadow);padding:clamp(24px,5vw,58px);min-height:340px;display:grid;grid-template-columns:1.2fr .8fr;align-items:center;gap:20px}
+.hero:before{content:"";position:absolute;inset:0;background-image:radial-gradient(#ffffff30 1.3px,transparent 1.3px);background-size:10px 10px;opacity:.8;pointer-events:none}
+.hero-copy,.hero-art{position:relative;z-index:1}
+.kicker{display:inline-block;background:var(--yellow);color:var(--ink);border:2px solid var(--ink);padding:6px 10px;font-size:11px;font-weight:1000;letter-spacing:1.5px;transform:rotate(-2deg)}
+h1{font-size:clamp(38px,7vw,76px);line-height:.9;margin:20px 0 14px;text-transform:uppercase;letter-spacing:-3px;text-shadow:4px 4px 0 var(--ink)}
+.hero p{max-width:520px;line-height:1.6;color:#edf5ff}
+.burst{margin:auto;width:min(270px,75vw);aspect-ratio:1;display:grid;place-items:center;background:var(--yellow);color:var(--ink);clip-path:polygon(50% 0%,60% 25%,83% 8%,77% 34%,100% 40%,78% 55%,95% 78%,66% 72%,50% 100%,39% 73%,10% 91%,23% 62%,0 48%,27% 39%,12% 14%,41% 27%);font-weight:1000;text-align:center;font-size:clamp(24px,4vw,42px);line-height:.95;text-shadow:2px 2px white;transform:rotate(7deg);filter:drop-shadow(5px 5px 0 var(--ink))}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:var(--yellow);color:var(--ink);border:3px solid var(--ink);box-shadow:4px 4px 0 var(--ink);padding:12px 17px;text-decoration:none;font-weight:1000;text-transform:uppercase;font-size:12px;letter-spacing:.5px;transition:.12s}
+.btn:hover{transform:translate(2px,2px);box-shadow:2px 2px 0 var(--ink)}
+.btn.red{background:var(--red);color:white}.btn.blue{background:var(--blue2);color:white}
+.section-head{display:flex;align-items:end;justify-content:space-between;gap:12px;margin:36px 0 16px}
+.section-head h2{margin:0;font-size:clamp(25px,4vw,38px);text-transform:uppercase;letter-spacing:-1px}
+.section-head p{margin:0;color:var(--muted);font-size:13px}
+.tile-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}
+.tile{background:white;border:3px solid var(--ink);box-shadow:4px 4px 0 var(--ink);padding:18px;min-height:145px;position:relative}
+.tile:nth-child(3n+1){border-top:8px solid var(--red)}.tile:nth-child(3n+2){border-top:8px solid var(--yellow)}.tile:nth-child(3n){border-top:8px solid var(--blue2)}
+.tile .num{font-size:11px;font-weight:1000;color:var(--muted);letter-spacing:2px}
+.tile h3{margin:9px 0 7px;font-size:19px;text-transform:uppercase}
+.tile p{margin:0;color:#596579;font-size:13px;line-height:1.5}
+.panel{background:var(--paper);border:3px solid var(--ink);box-shadow:var(--shadow);padding:clamp(18px,3vw,30px);margin-top:20px}
+.panel h2,.panel h3{margin-top:0;text-transform:uppercase}
+.panel p,.panel li{line-height:1.65}
+.tag{display:inline-block;background:#e8effa;border:1px solid #9bb4d7;padding:5px 8px;margin:3px;font-size:11px;font-weight:900}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}
+.character{background:white;border:3px solid var(--ink);box-shadow:4px 4px 0 var(--ink);overflow:hidden}
+.character .portrait{height:145px;background:linear-gradient(135deg,#dceaff,#fff1bd);display:grid;place-items:center;font-size:42px}
+.character .details{padding:14px}.character h3{margin:0 0 5px;text-transform:uppercase}.character p{font-size:13px;color:#5b6574;line-height:1.45;margin:5px 0}
+.status{display:inline-block;padding:5px 8px;background:#e8f6e9;color:#216a35;font-size:10px;font-weight:1000;text-transform:uppercase}
+.rules{counter-reset:rule;list-style:none;padding:0}
+.rules li{counter-increment:rule;padding:12px 12px 12px 52px;margin:10px 0;background:white;border:2px solid var(--ink);position:relative}
+.rules li:before{content:counter(rule,decimal-leading-zero);position:absolute;left:12px;top:10px;background:var(--yellow);border:2px solid var(--ink);padding:5px;font-weight:1000}
+.notice{border-left:7px solid var(--red);background:#fff0ee;padding:13px 16px;line-height:1.5}
+.secret{max-width:600px;margin:30px auto;text-align:center}
+.secret-lock{font-size:50px}
+.secret input{width:100%;padding:13px;border:3px solid var(--ink);margin:12px 0;outline:none}
+.secret input:focus{box-shadow:3px 3px 0 var(--yellow)}
+.secret-result{display:none;margin-top:20px;padding:20px;background:#eaf5ff;border:3px dashed var(--blue);text-align:left}
+.secret-result.show{display:block}
+.music{position:fixed;z-index:30;bottom:14px;left:14px;right:14px;max-width:480px;margin:auto;background:#172235;color:white;border:3px solid #0b1220;box-shadow:4px 4px 0 #0008;padding:10px 12px;display:flex;align-items:center;gap:10px}
+.music .music-meta{min-width:0;flex:1}.music strong{display:block;font-size:11px;letter-spacing:.7px}.music small{display:block;color:#c8d2e1;font-size:10px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.music button{border:2px solid white;background:var(--yellow);color:var(--ink);font-weight:1000;width:34px;height:32px}
+.music input[type=range]{width:65px;accent-color:var(--yellow)}
+.music input[type=file]{display:none}
+.music .load{font-size:10px;color:#fff;cursor:pointer;text-decoration:underline;white-space:nowrap}
+.footer{margin-top:40px;text-align:center;font-size:11px;color:#788396}
+.comic-label{display:inline-block;background:var(--red);color:white;padding:6px 9px;font-weight:1000;transform:rotate(-2deg);border:2px solid var(--ink)}
+@media(max-width:760px){
+ .header-inner{align-items:flex-start;flex-direction:column}.nav{justify-content:flex-start}
+ .hero{grid-template-columns:1fr;min-height:unset}.hero-art{display:none}
+ .tile-grid,.cards{grid-template-columns:1fr 1fr}
+}
+@media(max-width:480px){main{padding:18px 13px 115px}.tile-grid,.cards{grid-template-columns:1fr}.nav button{padding:8px 7px;font-size:10px}.music{gap:7px}.music input[type=range]{width:48px}.music .load{font-size:9px}}
+</style>
+</head>
+<body>
+<header class="site-header">
+ <div class="header-inner">
+  <a class="brand" href="#" onclick="go('home');return false">
+   <span class="brand-mark">THA</span>
+   <span>TEYVAT HERO ACADEMY<small>MULTIVERSE HERO PROJECT</small></span>
+  </a>
+  <nav class="nav" aria-label="Navegación principal">
+   <button class="active" data-page="home" onclick="go('home')">HOME</button>
+   <button data-page="universe" onclick="go('universe')">01 · UNIVERSO</button>
+   <button data-page="rules" onclick="go('rules')">02 · REGLAMENTO</button>
+   <button data-page="characters" onclick="go('characters')">03 · PERSONAJES</button>
+   <button data-page="news" onclick="go('news')">04 · TABLÓN</button>
+   <button data-page="classified" onclick="go('classified')" title="Archivo reservado. Pista: el grito de un héroe que supera sus límites.">05 · CLASSIFIED</button>
+  </nav>
+ </div>
+</header>
+
+<main>
+<section id="home" class="page active">
+ <div class="hero">
+  <div class="hero-copy">
+   <span class="kicker">WELCOME, FUTURE HERO!</span>
+   <h1>TEYVAT<br>HERO<br>ACADEMY</h1>
+   <p>Un nuevo universo. Nuevas alianzas. Una academia donde héroes de distintos mundos escriben una historia en común.</p>
+   <button class="btn" onclick="go('universe')">EXPLORE THE ACADEMY ↗</button>
+  </div>
+  <div class="hero-art"><div class="burst">PLUS<br>ULTRA!</div></div>
+ </div>
+ <div class="section-head"><div><span class="comic-label">CHOOSE YOUR DESTINY</span><h2>Explorá la academia</h2></div></div>
+ <div class="tile-grid">
+  <article class="tile"><span class="num">01 / LORE</span><h3>El universo</h3><p>Conocé la ambientación, el contexto y las reglas de este crossover.</p></article>
+  <article class="tile"><span class="num">02 / GUIDE</span><h3>Reglamento</h3><p>Todo lo necesario para compartir el roleplay y mantener la aventura.</p></article>
+  <article class="tile"><span class="num">03 / ROSTER</span><h3>Personajes</h3><p>Descubrí quiénes integran la academia y qué lugares están disponibles.</p></article>
+  <article class="tile"><span class="num">04 / BULLETIN</span><h3>Tablón</h3><p>Anuncios, eventos, novedades y comunicados de la administración.</p></article>
+  <article class="tile"><span class="num">05 / RESTRICTED</span><h3>Classified</h3><p>Un archivo reservado espera a quienes encuentren la clave.</p></article>
+ </div>
+ <div class="panel"><h2>🌟 Tres mundos. Una academia.</h2><span class="tag">GENSHIN IMPACT</span><span class="tag">HONKAI: STAR RAIL</span><span class="tag">ZENLESS ZONE ZERO</span><p>Los personajes de HoYoverse llegan a una sociedad organizada alrededor de héroes, entrenamiento y desafíos. Esta es la puerta de entrada a nuestra historia.</p></div>
+</section>
+
+<section id="universe" class="page">
+ <span class="comic-label">FILE 01 · WORLD DATABASE</span>
+ <div class="section-head"><div><h2>El universo</h2><p>La historia comienza acá.</p></div></div>
+ <div class="panel">
+  <h2>Una nueva generación de héroes</h2>
+  <p><em>Texto provisional:</em> En una sociedad donde los héroes son parte fundamental de la vida cotidiana, personas provenientes de distintos mundos comienzan a cruzar sus caminos. La academia abre sus puertas para recibirlos, estudiar sus habilidades y prepararlos para un futuro lleno de desafíos.</p>
+  <p>Este espacio se puede reemplazar por la sinopsis definitiva, la cronología del crossover y las reglas de adaptación entre universos.</p>
+ </div>
+ <div class="tile-grid">
+  <article class="tile"><span class="num">WORLD 01</span><h3>Teyvat</h3><p>Personajes y referencias provenientes de Genshin Impact.</p></article>
+  <article class="tile"><span class="num">WORLD 02</span><h3>Star Rail</h3><p>Viajeros, facciones y habilidades de Honkai: Star Rail.</p></article>
+  <article class="tile"><span class="num">WORLD 03</span><h3>New Eridu</h3><p>Agentes y personajes de Zenless Zone Zero.</p></article>
+ </div>
+</section>
+
+<section id="characters" class="page">
+ <span class="comic-label">FILE 02 · STUDENT ROSTER</span>
+ <div class="section-head"><div><h2>Personajes</h2><p>Expedientes de la academia.</p></div></div>
+ <div class="notice">Estas son fichas de ejemplo. Después podemos incorporar imágenes, personajes, disponibilidad y datos reales del grupo.</div>
+ <div class="cards" style="margin-top:18px">
+  <article class="character"><div class="portrait">✦</div><div class="details"><span class="status">Disponible · ejemplo</span><h3>Nombre del personaje</h3><p><b>Origen:</b> Genshin Impact</p><p><b>Don:</b> Habilidad adaptada al universo.</p></div></article>
+  <article class="character"><div class="portrait">✧</div><div class="details"><span class="status">Disponible · ejemplo</span><h3>Nombre del personaje</h3><p><b>Origen:</b> Honkai: Star Rail</p><p><b>Don:</b> Habilidad adaptada al universo.</p></div></article>
+  <article class="character"><div class="portrait">⚡</div><div class="details"><span class="status">Disponible · ejemplo</span><h3>Nombre del personaje</h3><p><b>Origen:</b> Zenless Zone Zero</p><p><b>Don:</b> Habilidad adaptada al universo.</p></div></article>
+ </div>
+</section>
+
+<section id="characters" class="page">
+ <span class="comic-label">FILE 02 · STUDENT ROSTER</span>
+ <div class="section-head"><div><h2>Personajes</h2><p>Expedientes de la academia.</p></div></div>
+ <div class="notice">Estas son fichas de ejemplo. Después podemos incorporar imágenes, personajes, disponibilidad y datos reales del grupo.</div>
+ <div class="cards" style="margin-top:18px">
+  <article class="character"><div class="portrait">✦</div><div class="details"><span class="status">Disponible · ejemplo</span><h3>Nombre del personaje</h3><p><b>Origen:</b> Genshin Impact</p><p><b>Don:</b> Habilidad adaptada al universo.</p></div></article>
+  <article class="character"><div class="portrait">✧</div><div class="details"><span class="status">Disponible · ejemplo</span><h3>Nombre del personaje</h3><p><b>Origen:</b> Honkai: Star Rail</p><p><b>Don:</b> Habilidad adaptada al universo.</p></div></article>
+  <article class="character"><div class="portrait">⚡</div><div class="details"><span class="status">Disponible · ejemplo</span><h3>Nombre del personaje</h3><p><b>Origen:</b> Zenless Zone Zero</p><p><b>Don:</b> Habilidad adaptada al universo.</p></div></article>
+ </div>
+</section>
+
+<section id="rules" class="page">
+ <span class="comic-label">FILE 03 · ACADEMY CODE</span>
+ <div class="section-head"><div><h2>Reglamento</h2><p>Las reglas para jugar en equipo.</p></div></div>
+ <div class="panel">
+  <ol class="rules">
+   <li><b>Respeto ante todo.</b> Separar conflictos entre personajes de las relaciones entre usuarios.</li>
+   <li><b>Consentimiento narrativo.</b> Acordar escenas importantes, combates y consecuencias con las personas involucradas.</li>
+   <li><b>Coherencia de personajes.</b> Respetar la personalidad y las capacidades acordadas para cada personaje.</li>
+   <li><b>Convivencia.</b> Evitar spam, discriminación, acoso y contenido que incumpla las normas del grupo.</li>
+   <li><b>Comunicación.</b> Avisar a la administración ante dudas, ausencias o conflictos.</li>
+  </ol>
+  <p><em>Reglamento ilustrativo: reemplazar o ampliar con las normas oficiales del grupo.</em></p>
+ </div>
+</section>
+
+<section id="news" class="page">
+ <span class="comic-label">FILE 04 · HERO BULLETIN</span>
+ <div class="section-head"><div><h2>Tablón de anuncios</h2><p>Noticias desde la administración.</p></div></div>
+ <div class="tile-grid">
+  <article class="tile"><span class="num">ANNOUNCEMENT 001</span><h3>¡Bienvenidos!</h3><p>Este espacio estará destinado a novedades y comunicados del roleplay.</p></article>
+  <article class="tile"><span class="num">EVENTS</span><h3>Próximos eventos</h3><p>Publicá acá fechas, actividades y tramas grupales.</p></article>
+  <article class="tile"><span class="num">UPDATES</span><h3>Actualizaciones</h3><p>Reservas, cambios en las reglas y novedades de personajes.</p></article>
+ </div>
+</section>
+
+<section id="classified" class="page">
+ <span class="comic-label">FILE 05 · RESTRICTED ACCESS</span>
+ <div class="panel secret">
+  <div class="secret-lock">🔒</div>
+  <h2>CLASSIFIED ACCESS</h2>
+  <p>Este archivo contiene información reservada para integrantes autorizados de Teyvat Hero Academy.</p>
+  <p><b>Introducí la clave de acceso para desbloquear los canales de comunicación.</b></p>
+  <form id="pass-form">
+   <input id="pass-input" type="password" placeholder="ACCESS CODE" autocomplete="off" aria-label="Código de acceso">
+   <button class="btn red" type="submit">UNLOCK FILE</button>
+  </form>
+  <p id="pass-message" role="status" aria-live="polite"></p>
+  <div class="secret-result" id="secret-result">
+   <h3>✓ ACCESS GRANTED</h3>
+   <p>¡Bienvenido/a! Estos son los accesos al grupo:</p>
+   <p><a class="btn blue" href="https://chat.whatsapp.com/REEMPLAZAR_ENLACE_1" target="_blank" rel="noopener">WHATSAPP · GRUPO PRINCIPAL ↗</a></p>
+   <p><a class="btn blue" href="https://chat.whatsapp.com/REEMPLAZAR_ENLACE_2" target="_blank" rel="noopener">WHATSAPP · ANUNCIOS ↗</a></p>
+   <small>Reemplazá los enlaces de ejemplo por las invitaciones reales.</small>
+  </div>
+ </div>
+</section>
+<div class="footer">TEYVAT HERO ACADEMY · UN FAN PROJECT / ROLEPLAY COMMUNITY</div>
+</main>
+
+<div class="music" aria-label="Reproductor musical">
+ <button id="play" title="Reproducir o pausar">▶</button>
+ <div class="music-meta"><strong>ACADEMY SOUNDTRACK</strong><small id="track-name">Cargá tus archivos de música para comenzar</small></div>
+ <label class="load" for="audio-files">＋ CARGAR</label>
+ <input id="audio-files" type="file" accept="audio/*" multiple>
+ <input id="volume" type="range" min="0" max="1" step=".01" value=".45" title="Volumen">
+ <audio id="audio" preload="none"></audio>
+</div>
+
+<script>
+// Navegación tipo SPA: el reproductor permanece vivo al cambiar de sección.
+function go(page){
+ document.querySelectorAll('.page').forEach(p=>p.classList.toggle('active',p.id===page));
+ document.querySelectorAll('.nav button').forEach(b=>b.classList.toggle('active',b.dataset.page===page));
+ window.scrollTo({top:0,behavior:'smooth'});
+}
+const ACCESS_CODE = 'PLUSULTRA'; // Clave de ejemplo: podés cambiarla acá.
+document.getElementById('pass-form').addEventListener('submit',e=>{
+ e.preventDefault();
+ const entered=document.getElementById('pass-input').value.trim().toUpperCase().replace(/\s+/g,'');
+ const msg=document.getElementById('pass-message');
+ if(entered===ACCESS_CODE){
+  document.getElementById('secret-result').classList.add('show');
+  msg.textContent='Código correcto. Archivo desbloqueado.';
+  msg.style.color='#216a35';
+ }else{
+  msg.textContent='Código incorrecto. Seguí explorando la academia.';
+  msg.style.color='#c52e36';
+  document.getElementById('secret-result').classList.remove('show');
+ }
+});
+
+// Música local: elegís varios archivos y se reproducen en secuencia.
+const audio=document.getElementById('audio');
+const filesInput=document.getElementById('audio-files');
+const playButton=document.getElementById('play');
+const trackName=document.getElementById('track-name');
+let playlist=[],trackIndex=0;
+audio.volume=.45;
+document.getElementById('volume').addEventListener('input',e=>audio.volume=Number(e.target.value));
+filesInput.addEventListener('change',()=>{
+ playlist=Array.from(filesInput.files||[]);
+ trackIndex=0;
+ if(playlist.length) loadTrack(true);
+});
+function loadTrack(autoplay){
+ if(!playlist.length)return;
+ const file=playlist[trackIndex];
+ audio.src=URL.createObjectURL(file);
+ trackName.textContent=(trackIndex+1)+'/'+playlist.length+' · '+file.name;
+ if(autoplay) audio.play().then(()=>playButton.textContent='Ⅱ').catch(()=>playButton.textContent='▶');
+}
+playButton.addEventListener('click',()=>{
+ if(!playlist.length){filesInput.click();return;}
+ if(audio.paused){audio.play().then(()=>playButton.textContent='Ⅱ').catch(()=>{});}
+ else{audio.pause();playButton.textContent='▶';}
+});
+audio.addEventListener('ended',()=>{
+ if(!playlist.length)return;
+ trackIndex=(trackIndex+1)%playlist.length;
+ loadTrack(true);
+});
+audio.addEventListener('pause',()=>playButton.textContent='▶');
+audio.addEventListener('play',()=>playButton.textContent='Ⅱ');
+</script>
+</body>
+</html>
