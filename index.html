@@ -346,8 +346,6 @@ document.getElementById('pass-form').addEventListener('submit',e=>{
  }
 });
 
-// Música local: elegís varios archivos y se reproducen en secuencia.
-
 // Playlist pública alojada en el repositorio GitHub.
 const audio = document.getElementById('audio');
 const playButton = document.getElementById('play');
@@ -487,5 +485,18 @@ async function loadRepositoryPlaylist() {
 // Inicializar reproductor.
 loadRepositoryPlaylist();
 </script>
+<style>
+.music button {
+  flex-shrink: 0;
+  min-width: 40px;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  display: grid;
+  place-items: center;
+  line-height: 1;
+  white-space: nowrap;
+}
+</style>
 </body>
 </html>
