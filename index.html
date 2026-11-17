@@ -16,7 +16,7 @@ html{scroll-behavior:smooth}
 body{margin:0;background:#f5f7fb;color:var(--ink);font-family:Arial,Helvetica,sans-serif}
 button,input,textarea{font:inherit}
 button{cursor:pointer}
-.site-header{position:sticky;top:0;z-index:20;background:var(--blue);color:white;border-bottom:4px solid var(--ink);box-shadow:0 3px 0 #ffffff55}
+.site-header{position:sticky;top:0;z-index:20;background:var(--blue);color:white;border-bottom:px solid var(--ink);box-shadow:0 3px 0 #ffffff55}
 .header-inner{max-width:1120px;margin:auto;padding:12px 20px;display:flex;align-items:center;justify-content:space-between;gap:16px}
 .brand{display:flex;align-items:center;gap:10px;color:white;text-decoration:none;font-weight:1000;letter-spacing:.4px}
 .brand-mark{display:grid;place-items:center;width:42px;height:42px;background:var(--yellow);color:var(--ink);border:3px solid var(--ink);transform:rotate(-5deg);font-size:21px;box-shadow:3px 3px 0 var(--ink)}
@@ -172,12 +172,6 @@ box-sizing: border-box;
  .hero{grid-template-columns:1fr;min-height:unset}.hero-art{display:none}
  .tile-grid,.cards{grid-template-columns:1fr 1fr}
 }
-@media(max-width:480px){main{padding:18px 13px 115px}.tile-grid,.cards{grid-template-columns:1fr}.nav button{padding:8px 7px;font-size:10px}.music{gap:7px}.music input[type=range]{width:48px}.music .load{font-size:9px}}
-/* Ocultar temporalmente la sección de personajes */
-#characters,
-[data-page="characters"] {
-  display: none !important;
-}
 </style>
 </head>
 <body>
@@ -215,11 +209,11 @@ box-sizing: border-box;
  </div>
  <div class="section-head"><div><span class="comic-label">CHOOSE YOUR DESTINY</span><h2>Explorá la academia</h2></div></div>
  <div class="tile-grid">
-  <article class="tile"><span class="num">01 / LORE</span><h3>El universo</h3><p>Conocé la ambientación, el contexto y las reglas de este crossover.</p></article>
-  <article class="tile"><span class="num">02 / GUIDE</span><h3>Reglamento</h3><p>Todo lo necesario para compartir el roleplay y mantener la aventura.</p></article>
-  <article class="tile"><span class="num">03 / ROSTER</span><h3>Personajes</h3><p>Descubrí quiénes integran la academia y qué lugares están disponibles.</p></article>
+  <article class="tile"><span class="num">01 / LORE</span><h3>El universo</h3><p>Conocé la ambientación, las reglas y como ingresar en el grupo.</p></article>
+  <article class="tile"><span class="num">02 / GUIDE</span><h3>Reglamento</h3><p>Todo lo necesario para comprender los limites de los heroes.</p></article>
+  <article class="tile"><span class="num">03 / ROSTER</span><h3>Personajes</h3><p>Descubre quiénes integran la academia y qué lugares están disponibles.</p></article>
   <article class="tile"><span class="num">04 / BULLETIN</span><h3>Tablón</h3><p>Anuncios, eventos, novedades y comunicados de la administración.</p></article>
-  <article class="tile"><span class="num">05 / RESTRICTED</span><h3>Classified</h3><p>Un archivo reservado espera a quienes encuentren la clave.</p></article>
+  <article class="tile"><span class="num">05 / RESTRICTED</span><h3>Classified</h3><p> [INFORMACIÓN CLASIFICADA].</p></article>
  </div>
  <div class="panel"><h2>🌟 Tres mundos. Una academia.</h2><span class="tag">GENSHIN IMPACT</span><span class="tag">HONKAI: STAR RAIL</span><span class="tag">ZENLESS ZONE ZERO</span><p>Los personajes de HoYoverse llegan a una sociedad organizada alrededor de héroes, entrenamiento y desafíos. Esta es la puerta de entrada a nuestra historia.</p></div>
 </section>
@@ -229,28 +223,13 @@ box-sizing: border-box;
  <div class="section-head"><div><h2>El universo</h2><p>La historia comienza acá.</p></div></div>
  <div class="panel">
   <h2>Una nueva generación de héroes</h2>
-  <p><em>Texto provisional:</em> En una sociedad donde los héroes son parte fundamental de la vida cotidiana, personas provenientes de distintos mundos comienzan a cruzar sus caminos. La academia abre sus puertas para recibirlos, estudiar sus habilidades y prepararlos para un futuro lleno de desafíos.</p>
-  <p>Este espacio se puede reemplazar por la sinopsis definitiva, la cronología del crossover y las reglas de adaptación entre universos.</p>
+  <p><em>Escuchame,</em> en una sociedad donde los héroes son parte fundamental de la vida cotidiana, personas provenientes de distintas tierras comienzan a cruzar sus caminos. La academia abre sus puertas para recibirlos, estudiar sus habilidades y prepararlos para un futuro lleno de desafíos.</p>
+  <p>Todos conocemos que cada universo corre por sus propios terrenos, mas en esta oportunidad, cada juego será el país de origen de nuestros estudiantes, quienes han decidido cruzar los limites para alcanzar la super academia de heroes.</p>
  </div>
  <div class="tile-grid">
-  <article class="tile"><span class="num">WORLD 01</span><h3>Teyvat</h3><p>Personajes y referencias provenientes de Genshin Impact.</p></article>
-  <article class="tile"><span class="num">WORLD 02</span><h3>Star Rail</h3><p>Viajeros, facciones y habilidades de Honkai: Star Rail.</p></article>
-  <article class="tile"><span class="num">WORLD 03</span><h3>New Eridu</h3><p>Agentes y personajes de Zenless Zone Zero.</p></article>
- </div>
-</section>
-
-<section id="rules" class="page">
- <span class="comic-label">FILE 03 · ACADEMY CODE</span>
- <div class="section-head"><div><h2>Reglamento</h2><p>Las reglas para jugar en equipo.</p></div></div>
- <div class="panel">
-  <ol class="rules">
-   <li><b>Respeto ante todo.</b> Separar conflictos entre personajes de las relaciones entre usuarios.</li>
-   <li><b>Consentimiento narrativo.</b> Acordar escenas importantes, combates y consecuencias con las personas involucradas.</li>
-   <li><b>Coherencia de personajes.</b> Respetar la personalidad y las capacidades acordadas para cada personaje.</li>
-   <li><b>Convivencia.</b> Evitar spam, discriminación, acoso y contenido que incumpla las normas del grupo.</li>
-   <li><b>Comunicación.</b> Avisar a la administración ante dudas, ausencias o conflictos.</li>
-  </ol>
-  <p><em>Reglamento ilustrativo: reemplazar o ampliar con las normas oficiales del grupo.</em></p>
+  <article class="tile"><span class="num">WORLD 01</span><h3>Teyvat</h3><p>Personajes provenientes de Genshin Impact, la ciudad principal es la Gran Teyvat, seguida de las 8 ciudades que la conforman, Mondstadt, Liyue, Inazuma, Sumeru, Fontaine, Nod Krai, Snezhnaya. ¿Qué? ¿Otra ciudad? No, te confundes. Esas son todas. </p></article>
+  <article class="tile"><span class="num">WORLD 02</span><h3>Star Rail</h3><p>Viajeros, personajes, trazacaminos de las estrellas, o la ciudad mas viva del mundo. Dividida en sus ciudades principales, Herta Espacial, El Luofu de Xianzhou, Penacony, Amphoreus y Plan Arcadia. ¿Qué? ¿Otra ciudad? No, te confundes. Esas son todas. </p></article>
+  <article class="tile"><span class="num">WORLD 03</span><h3>New Eridu</h3><p>Agentes y personajes de la metropoli Nueva Eridu, con sus pequeños territorios, como al Isla de la Quietud, Estación Omond, Distrito de Vyrium, Distrito de Buastrum, Villardiente. ¿Qué? ¿Otra ciudad? No, te confundes. Esas son todas. </p></article>
  </div>
 </section>
 
@@ -259,9 +238,30 @@ box-sizing: border-box;
  <div class="section-head"><div><h2>Personajes</h2><p>Expedientes de la academia.</p></div></div>
  <div class="notice">Estas son fichas de ejemplo. Después podemos incorporar imágenes, personajes, disponibilidad y datos reales del grupo.</div>
  <div class="cards" style="margin-top:18px">
-  <article class="character"><div class="portrait">✦</div><div class="details"><span class="status">Disponible · ejemplo</span><h3>Nombre del personaje</h3><p><b>Origen:</b> Genshin Impact</p><p><b>Don:</b> Habilidad adaptada al universo.</p></div></article>
-  <article class="character"><div class="portrait">✧</div><div class="details"><span class="status">Disponible · ejemplo</span><h3>Nombre del personaje</h3><p><b>Origen:</b> Honkai: Star Rail</p><p><b>Don:</b> Habilidad adaptada al universo.</p></div></article>
-  <article class="character"><div class="portrait">⚡</div><div class="details"><span class="status">Disponible · ejemplo</span><h3>Nombre del personaje</h3><p><b>Origen:</b> Zenless Zone Zero</p><p><b>Don:</b> Habilidad adaptada al universo.</p></div></article>
+  <article class="character"><div class="portrait">✦</div><div class="details"><span class="status"> Bloqueado · NPC </span><h3> Varka</h3><p><b>Origen:</b> Genshin Impact</p><p><b>Don:</b> Combate a los enemigos con una gran fuerza, es el Heroe Número 1 de la sociedad actual.</p></div></article>
+  <article class="character"><div class="portrait">✦</div><div class="details"><span class="status"> Disponible · ejemplo</span><h3>Nombre del personaje</h3><p><b>Origen:</b> Genshin Impact</p><p><b>Don:</b> Habilidad adaptada al universo.</p></div></article>
+  <article class="character"><div class="portrait">✧</div><div class="details"><span class="status"> Disponible · ejemplo</span><h3>Nombre del personaje</h3><p><b>Origen:</b> Honkai: Star Rail</p><p><b>Don:</b> Habilidad adaptada al universo.</p></div></article>
+  <article class="character"><div class="portrait">⚡</div><div class="details"><span class="status"> Disponible · ejemplo</span><h3>Nombre del personaje</h3><p><b>Origen:</b> Zenless Zone Zero</p><p><b>Don:</b> Habilidad adaptada al universo.</p></div></article>
+ </div>
+</section>
+
+<section id="rules" class="page">
+ <span class="comic-label">FILE 03 · ACADEMY CODE</span>
+ <div class="section-head"><div><h2>Reglamento</h2><p> Para no perdernos del buen camino.</p></div></div>
+ <div class="panel">
+  <ol class="rules">
+   <li><b> Conflictos fuera del grupo, nada de permitir que afecten el rol.</b> Separar conflictos entre personajes de las relaciones entre usuarios.</li>
+   <li><b> No eres el protagonista. </b> Todos los poderes que elijas colocar a tu personaje tienen que contar con dos debilidades, sean fisicas, emocionales o de resistencia.</li>
+   <li><b> No te adelantes a los demás.</b> Acordar escenas importantes, combates y consecuencias con las personas involucradas.</li>
+   <li><b> Respetar los grupos con sus funciones.</b> No se permite la conversación off rol en los grupos de rol, donde se encuentre un mensaje que incumpla esta indicación, será borrado sin previo aviso.</li>
+   <li><b> No olvides la comunicación.</b> Avisar a la administración ante dudas, ausencias o conflictos. Ideas y propuestas también son bienvenidas.</li>
+   <li><b> Contador de mensajes. </b> Si bien el minimo de mensajes es de 25 semanales, un número sumamente bajo, se requiere participación en alguna de las clases que se dará en la semana, se requiere una participación de al menos 3 clases.</li>
+   <li><b> Roles +18 denegados. </b> Esta terminantemente prohibido el NSFW, son estudiantes de superheroes, no hay espacio para ese tipo de intimidades.</li>
+   <li><b> Nada de parejas. </b> No estan prohibidas, sin embargo, las relaciones son una responsabilidad. Tu intéres romantico, tu pareja, tu familia, son puntos débiles que dejaras a la vista para los ataques de villanos.</li>
+   <li><b> Profesores bloqueados. </b> Para evitar conflictos, complicaciones o confusiones, ningún usuario externo a la administración podrá colocar que su personaje sea profesor u heroe profesional (lo último con excepción de que se haya graduado.) </li>
+   <li><b> Eventos y Ataques. </b> Revisen la página periodicamente para actualizarse por festivales, concursos y entrenamientos. Los ataques villanos no tendrán un aviso, ellos no tienen un calendario de cuándo podrían destruir la sociedad. </li>
+  </ol>
+  <p><em> Las reglas están sujetas a modificaciones dependiendo acciones emitidas en el grupo.</em></p>
  </div>
 </section>
 
@@ -269,9 +269,9 @@ box-sizing: border-box;
  <span class="comic-label">FILE 04 · HERO BULLETIN</span>
  <div class="section-head"><div><h2>Tablón de anuncios</h2><p>Noticias desde la administración.</p></div></div>
  <div class="tile-grid">
-  <article class="tile"><span class="num">ANNOUNCEMENT 001</span><h3>¡Bienvenidos!</h3><p>Este espacio estará destinado a novedades y comunicados del roleplay.</p></article>
-  <article class="tile"><span class="num">EVENTS</span><h3>Próximos eventos</h3><p>Publicá acá fechas, actividades y tramas grupales.</p></article>
-  <article class="tile"><span class="num">UPDATES</span><h3>Actualizaciones</h3><p>Reservas, cambios en las reglas y novedades de personajes.</p></article>
+  <article class="tile"><span class="num">ANNOUNCEMENT 001</span><h3>¡Bienvenidos!</h3><p> Este espacio estará destinado a novedades y comunicados del grupo. </p></article>
+  <article class="tile"><span class="num">EVENTS</span><h3>Próximos eventos</h3><p> ¡Bienvenida del curso! El festival de apertura se dará cuando todos los alumnos hayan completado su examen de ingreso. </p></article>
+  <article class="tile"><span class="num">UPDATES</span><h3>Actualizaciones</h3><p> Reservas, cambios en las reglas y novedades de la academia. </p></article>
  </div>
 </section>
 
@@ -280,8 +280,8 @@ box-sizing: border-box;
  <div class="panel secret">
   <div class="secret-lock">🔒</div>
   <h2>CLASSIFIED ACCESS</h2>
-  <p>Este archivo contiene información reservada para integrantes autorizados de Teyvat Hero Academy.</p>
-  <p><b>Introducí la clave de acceso para desbloquear los canales de comunicación.</b></p>
+  <p> Este archivo contiene información reservada para integrantes autorizados de Teyvat Hero Academy.</p>
+  <p><b>Introduce la clave de acceso para desbloquear los canales de comunicación.</b></p>
   <form id="pass-form">
    <input id="pass-input" type="password" placeholder="ACCESS CODE" autocomplete="off" aria-label="Código de acceso">
    <button class="btn red" type="submit">UNLOCK FILE</button>
@@ -296,7 +296,7 @@ box-sizing: border-box;
   </div>
  </div>
 </section>
-<div class="footer">TEYVAT HERO ACADEMY · UN FAN PROJECT / ROLEPLAY COMMUNITY</div>
+<div class="footer">TEYVAT HERO ACADEMY · APOLLO ROLEPLAY COMMUNITY </div>
 </main>
 
 <div class="music" aria-label="Reproductor musical">
@@ -330,7 +330,7 @@ function go(page){
  document.querySelectorAll('.nav button').forEach(b=>b.classList.toggle('active',b.dataset.page===page));
  window.scrollTo({top:0,behavior:'smooth'});
 }
-const ACCESS_CODE = 'PLUSULTRA'; // Clave de ejemplo: podés cambiarla acá.
+const ACCESS_CODE = 'VARKAMIGHT'; // Clave de ejemplo: podés cambiarla acá.
 document.getElementById('pass-form').addEventListener('submit',e=>{
  e.preventDefault();
  const entered=document.getElementById('pass-input').value.trim().toUpperCase().replace(/\s+/g,'');
