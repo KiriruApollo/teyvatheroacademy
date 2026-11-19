@@ -1,0 +1,814 @@
+
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#071b50">
+<link rel="icon" type="image/png" href="assets/imagenes/favicon.png">
+<title>THA // SECURE TERMINAL</title>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<style>
+:root {
+  --bg: #071b50;
+  --bg2: #0b2867;
+  --yellow: #ffe65c;
+  --yellow-dim: #c9b84e;
+  --line: #a99742;
+  --red: #ff7777;
+  --green: #baff9b;
+  --mono: "Courier New", Courier, monospace;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  padding: 24px 18px 40px;
+  background: var(--bg);
+  color: var(--yellow);
+  font-family: var(--mono);
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+button, input {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+.hidden {
+  display: none !important;
+}
+
+::selection {
+  background: var(--yellow);
+  color: var(--bg);
+}
+
+/* PANTALLA */
+
+.terminal {
+  width: 100%;
+  max-width: 900px;
+  margin: auto;
+}
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid var(--line);
+}
+
+.brand {
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.brand small {
+  display: block;
+  margin-top: 3px;
+  color: var(--yellow-dim);
+  font-size: 10px;
+  letter-spacing: 2px;
+}
+
+.system-status {
+  text-align: right;
+  font-size: 10px;
+  letter-spacing: 1px;
+}
+
+.status-online {
+  color: var(--green);
+}
+
+.status-online::before {
+  content: "● ";
+}
+
+/* ENCABEZADO */
+
+.system-heading {
+  margin: 42px 0 30px;
+}
+
+.system-heading .eyebrow {
+  color: var(--yellow-dim);
+  font-size: 11px;
+  letter-spacing: 2px;
+}
+
+.system-heading h1 {
+  margin: 12px 0;
+  font-size: clamp(29px, 7vw, 54px);
+  line-height: 1.05;
+  letter-spacing: 1px;
+  font-weight: bold;
+}
+
+.system-heading p {
+  margin: 0;
+  color: var(--yellow-dim);
+  font-size: 12px;
+}
+
+/* SECCIONES */
+
+.terminal-window {
+  border: 1px solid var(--line);
+  padding: clamp(17px, 4vw, 30px);
+  background: transparent;
+}
+
+.window-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding-bottom: 13px;
+  margin-bottom: 22px;
+  border-bottom: 1px solid var(--line);
+  font-size: 12px;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.window-title small {
+  color: var(--yellow-dim);
+  font-size: 10px;
+}
+
+/* LOGIN */
+
+.prompt {
+  margin: 13px 0 7px;
+  color: var(--yellow-dim);
+  font-size: 11px;
+  letter-spacing: 1px;
+}
+
+.prompt::before {
+  content: "> ";
+  color: var(--yellow);
+}
+
+.field {
+  margin-bottom: 19px;
+}
+
+.field label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 11px;
+  letter-spacing: 1px;
+}
+
+.field input {
+  width: 100%;
+  padding: 12px 10px;
+  background: var(--bg2);
+  border: 1px solid var(--line);
+  border-radius: 0;
+  color: var(--yellow);
+  outline: none;
+  caret-color: var(--yellow);
+}
+
+.field input:focus {
+  border-color: var(--yellow);
+  box-shadow: 0 0 0 1px var(--yellow);
+}
+
+.field input::placeholder {
+  color: #9e9257;
+  opacity: 1;
+}
+
+.terminal-button {
+  display: inline-block;
+  padding: 10px 16px;
+  background: transparent;
+  border: 1px solid var(--yellow);
+  border-radius: 0;
+  color: var(--yellow);
+  font-weight: bold;
+  letter-spacing: 1px;
+  font-size: 11px;
+}
+
+.terminal-button:hover {
+  background: var(--yellow);
+  color: var(--bg);
+}
+
+.terminal-button:disabled {
+  opacity: .5;
+  cursor: wait;
+}
+
+.terminal-button.danger {
+  border-color: var(--red);
+  color: var(--red);
+}
+
+.terminal-button.danger:hover {
+  background: var(--red);
+  color: var(--bg);
+}
+
+.terminal-button.secondary {
+  border-color: var(--line);
+  color: var(--yellow-dim);
+}
+
+.terminal-button.secondary:hover {
+  background: var(--yellow);
+  color: var(--bg);
+}
+
+.message {
+  min-height: 20px;
+  margin: 15px 0 0;
+  font-size: 11px;
+  overflow-wrap: anywhere;
+}
+
+.login-footer {
+  margin-top: 28px;
+  padding-top: 13px;
+  border-top: 1px dashed var(--line);
+  color: var(--yellow-dim);
+  font-size: 10px;
+  line-height: 1.8;
+}
+
+/* BANDEJA */
+
+.account-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 12px 0;
+  margin-bottom: 23px;
+  border-top: 1px dashed var(--line);
+  border-bottom: 1px dashed var(--line);
+  font-size: 10px;
+}
+
+.account-bar strong {
+  color: var(--yellow);
+  overflow-wrap: anywhere;
+}
+
+.inbox-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.inbox-heading h2 {
+  margin: 0;
+  font-size: 15px;
+  letter-spacing: 1px;
+}
+
+.counter {
+  color: var(--green);
+  font-size: 11px;
+  font-weight: bold;
+}
+
+.toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.toolbar small {
+  color: var(--yellow-dim);
+  font-size: 10px;
+}
+
+/* MENSAJES */
+
+.records {
+  display: grid;
+  gap: 0;
+}
+
+.record {
+  padding: 19px 0 22px;
+  border-top: 1px solid var(--line);
+}
+
+.record:last-child {
+  border-bottom: 1px solid var(--line);
+}
+
+.record-header {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 13px;
+  font-size: 11px;
+}
+
+.record-sender {
+  font-weight: bold;
+  color: var(--yellow);
+}
+
+.record-date {
+  color: var(--yellow-dim);
+  font-size: 10px;
+}
+
+.record-meta {
+  margin-bottom: 9px;
+  color: var(--yellow-dim);
+  font-size: 10px;
+  letter-spacing: 1px;
+}
+
+.record-message {
+  margin: 0;
+  padding-left: 13px;
+  border-left: 2px solid var(--yellow);
+  color: var(--yellow);
+  font-size: 13px;
+  line-height: 1.8;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.record-id {
+  display: block;
+  margin-top: 13px;
+  color: var(--yellow-dim);
+  font-size: 9px;
+}
+
+.empty {
+  padding: 28px 0;
+  color: var(--yellow-dim);
+  font-size: 12px;
+  line-height: 1.9;
+}
+
+.empty strong {
+  display: block;
+  color: var(--yellow);
+  font-size: 13px;
+}
+
+/* PIE */
+
+.footer {
+  margin-top: 30px;
+  padding-top: 15px;
+  border-top: 1px solid var(--line);
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+  color: var(--yellow-dim);
+  font-size: 9px;
+  letter-spacing: 1px;
+}
+
+.cursor {
+  display: inline-block;
+  width: 8px;
+  height: 14px;
+  margin-left: 4px;
+  vertical-align: middle;
+  background: var(--yellow);
+  animation: blink 1s steps(2, start) infinite;
+}
+
+@keyframes blink {
+  to { visibility: hidden; }
+}
+
+@media(max-width: 520px) {
+  body {
+    padding: 17px 13px 30px;
+  }
+
+  .system-heading {
+    margin-top: 32px;
+  }
+
+  .record-header {
+    flex-direction: column;
+  }
+
+  .system-status {
+    text-align: left;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<main class="terminal">
+
+  <header class="topbar">
+    <div class="brand">
+      THA_SYSTEM
+      <small>TEYVAT HERO ACADEMY // NETWORK</small>
+    </div>
+
+    <div class="system-status">
+      SYSTEM STATUS:
+      <span class="status-online">ONLINE</span>
+      <br>
+      ACCESS LEVEL: RESTRICTED
+    </div>
+  </header>
+
+  <section class="system-heading">
+    <div class="eyebrow">[ SECURE DATABASE // FILE 06 ]</div>
+    <h1>CLASSIFIED ACCESS</h1>
+    <p>INCOMING TRANSMISSIONS DATABASE</p>
+  </section>
+
+  <!-- LOGIN -->
+
+  <section class="terminal-window" id="login-panel">
+
+    <div class="window-title">
+      <span>AUTHENTICATION REQUIRED</span>
+      <small>[ ADMIN LOGIN ]</small>
+    </div>
+
+    <p class="prompt">IDENTIFY YOURSELF</p>
+
+    <form id="login-form">
+
+      <div class="field">
+        <label for="email">ADMINISTRATOR ID / EMAIL</label>
+        <input
+          id="email"
+          type="email"
+          placeholder="ENTER EMAIL ADDRESS"
+          autocomplete="username"
+          required
+        >
+      </div>
+
+      <div class="field">
+        <label for="password">ACCESS PASSWORD</label>
+        <input
+          id="password"
+          type="password"
+          placeholder="ENTER PASSWORD"
+          autocomplete="current-password"
+          required
+        >
+      </div>
+
+      <button class="terminal-button" id="login-button" type="submit">
+        [ INITIATE LOGIN ]
+      </button>
+
+      <p class="message" id="login-message" role="status"></p>
+
+    </form>
+
+    <div class="login-footer">
+      ENCRYPTION: ACTIVE<br>
+      UNAUTHORIZED ACCESS IS PROHIBITED.<br>
+      WAITING FOR AUTHENTICATION<span class="cursor"></span>
+    </div>
+
+  </section>
+
+  <!-- BANDEJA -->
+
+  <section class="terminal-window hidden" id="inbox-panel">
+
+    <div class="window-title">
+      <span>INCOMING TRANSMISSIONS</span>
+      <small>[ DATABASE ACCESS GRANTED ]</small>
+    </div>
+
+    <div class="account-bar">
+      <span>SESSION USER: <strong id="account-email"></strong></span>
+
+      <button class="terminal-button danger" id="logout-button" type="button">
+        [ LOG OUT ]
+      </button>
+    </div>
+
+    <div class="inbox-heading">
+      <h2>MESSAGE ARCHIVE</h2>
+      <span class="counter" id="message-count">0 RECORDS</span>
+    </div>
+
+    <div class="toolbar">
+      <small>ORDER: NEWEST TO OLDEST</small>
+
+      <button class="terminal-button secondary" id="refresh-button" type="button">
+        [ REFRESH DATABASE ]
+      </button>
+    </div>
+
+    <p class="message" id="inbox-message" role="status"></p>
+
+    <div class="records" id="records"></div>
+
+  </section>
+
+  <footer class="footer">
+    <span>THA_SYSTEM // SECURE TERMINAL</span>
+    <span>CONNECTION ENCRYPTED · 199X</span>
+  </footer>
+
+</main>
+
+<script>
+// ==========================================
+// CONFIGURACIÓN DE SUPABASE
+// ==========================================
+
+const SUPABASE_URL = 'https://uvxxqmsvyupiitbngitk.supabase.co';
+
+const SUPABASE_KEY = 'sb_publishable_SslTd9BJzN3-My80_BvISA_fjeTxtxq';
+
+const supabaseClient = window.supabase.createClient(
+  SUPABASE_URL,
+  SUPABASE_KEY
+);
+
+// ==========================================
+// ELEMENTOS
+// ==========================================
+
+const loginPanel = document.getElementById('login-panel');
+const inboxPanel = document.getElementById('inbox-panel');
+
+const loginForm = document.getElementById('login-form');
+const loginButton = document.getElementById('login-button');
+const loginMessage = document.getElementById('login-message');
+
+const inboxMessage = document.getElementById('inbox-message');
+const recordsContainer = document.getElementById('records');
+const messageCount = document.getElementById('message-count');
+
+const accountEmail = document.getElementById('account-email');
+
+const refreshButton = document.getElementById('refresh-button');
+const logoutButton = document.getElementById('logout-button');
+
+// ==========================================
+// MENSAJES
+// ==========================================
+
+function showMessage(element, message, color = '') {
+  element.textContent = message;
+  element.style.color = color;
+}
+
+// ==========================================
+// LOGIN
+// ==========================================
+
+loginForm.addEventListener('submit', async (event) => {
+  event.preventDefault();
+
+  loginButton.disabled = true;
+  loginButton.textContent = '[ VERIFYING... ]';
+
+  showMessage(loginMessage, '> VERIFYING CREDENTIALS...');
+
+  const email = document.getElementById('email').value.trim();
+  const password = document.getElementById('password').value;
+
+  try {
+    const { data, error } = await supabaseClient.auth.signInWithPassword({
+      email,
+      password
+    });
+
+    if (error) throw error;
+
+    showMessage(loginMessage, '');
+
+    await showInbox(data.user);
+
+  } catch (error) {
+    console.error(error);
+
+    showMessage(
+      loginMessage,
+      '> ACCESS DENIED. CHECK YOUR CREDENTIALS.',
+      'var(--red)'
+    );
+
+  } finally {
+    loginButton.disabled = false;
+    loginButton.textContent = '[ INITIATE LOGIN ]';
+  }
+});
+
+// ==========================================
+// MOSTRAR BANDEJA
+// ==========================================
+
+async function showInbox(user) {
+  loginPanel.classList.add('hidden');
+  inboxPanel.classList.remove('hidden');
+
+  accountEmail.textContent = user.email || 'ADMINISTRATOR';
+
+  await loadMessages();
+}
+
+// ==========================================
+// CARGAR CONSULTAS
+// ==========================================
+
+async function loadMessages() {
+  refreshButton.disabled = true;
+  refreshButton.textContent = '[ LOADING... ]';
+
+  showMessage(inboxMessage, '> ACCESSING DATABASE...');
+  recordsContainer.replaceChildren();
+
+  try {
+    const { data, error } = await supabaseClient
+      .from('consultas')
+      .select('id, nombre, pregunta, created_at')
+      .order('created_at', { ascending: false });
+
+    if (error) throw error;
+
+    showMessage(inboxMessage, '');
+
+    messageCount.textContent = `${data.length} RECORDS`;
+
+    if (data.length === 0) {
+      const empty = document.createElement('div');
+      empty.className = 'empty';
+
+      const title = document.createElement('strong');
+      title.textContent = '> NO INCOMING TRANSMISSIONS';
+
+      const description = document.createElement('span');
+      description.textContent =
+        'DATABASE EMPTY. WAITING FOR NEW MESSAGES...';
+
+      empty.append(title, description);
+      recordsContainer.appendChild(empty);
+
+      return;
+    }
+
+    data.forEach((item, index) => {
+
+      const record = document.createElement('article');
+      record.className = 'record';
+
+      const header = document.createElement('div');
+      header.className = 'record-header';
+
+      const sender = document.createElement('span');
+      sender.className = 'record-sender';
+      sender.textContent = `> SENDER: ${item.nombre || 'UNKNOWN'}`;
+
+      const date = document.createElement('span');
+      date.className = 'record-date';
+
+      const parsedDate = new Date(item.created_at);
+
+      date.textContent = Number.isNaN(parsedDate.getTime())
+        ? 'DATE UNAVAILABLE'
+        : parsedDate.toLocaleString('es-AR', {
+            dateStyle: 'medium',
+            timeStyle: 'short'
+          });
+
+      header.append(sender, date);
+
+      const meta = document.createElement('div');
+      meta.className = 'record-meta';
+      meta.textContent = '[ MESSAGE CONTENT ]';
+
+      const question = document.createElement('p');
+      question.className = 'record-message';
+      question.textContent = item.pregunta || '';
+
+      const id = document.createElement('small');
+      id.className = 'record-id';
+      id.textContent =
+        `ARCHIVE ID: ${String(index + 1).padStart(3, '0')} // THA DATABASE`;
+
+      record.append(header, meta, question, id);
+
+      recordsContainer.appendChild(record);
+    });
+
+  } catch (error) {
+    console.error(error);
+
+    showMessage(
+      inboxMessage,
+      '> DATABASE ERROR. CHECK SESSION AND PERMISSIONS.',
+      'var(--red)'
+    );
+
+  } finally {
+    refreshButton.disabled = false;
+    refreshButton.textContent = '[ REFRESH DATABASE ]';
+  }
+}
+
+// ==========================================
+// ACTUALIZAR BANDEJA
+// ==========================================
+
+refreshButton.addEventListener('click', loadMessages);
+
+// ==========================================
+// CERRAR SESIÓN
+// ==========================================
+
+logoutButton.addEventListener('click', async () => {
+  logoutButton.disabled = true;
+
+  const { error } = await supabaseClient.auth.signOut();
+
+  logoutButton.disabled = false;
+
+  if (error) {
+    showMessage(
+      inboxMessage,
+      '> LOGOUT ERROR.',
+      'var(--red)'
+    );
+    return;
+  }
+
+  inboxPanel.classList.add('hidden');
+  loginPanel.classList.remove('hidden');
+
+  loginForm.reset();
+  recordsContainer.replaceChildren();
+
+  messageCount.textContent = '0 RECORDS';
+
+  showMessage(
+    loginMessage,
+    '> SESSION TERMINATED. GOODBYE, ADMINISTRATOR.',
+    'var(--green)'
+  );
+});
+
+// ==========================================
+// RECUPERAR SESIÓN
+// ==========================================
+
+async function checkSession() {
+  const { data, error } = await supabaseClient.auth.getSession();
+
+  if (error) {
+    console.error(error);
+    return;
+  }
+
+  if (data.session) {
+    await showInbox(data.session.user);
+  }
+}
+
+checkSession();
+
+</script>
+
+</body>
+</html>

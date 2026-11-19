@@ -38,8 +38,24 @@ button{cursor:pointer}
   box-shadow: 3px 3px 0 var(--ink);
 }
 .brand small{display:block;font-size:10px;letter-spacing:2px;color:#d9e8ff}
-.nav{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}
-.nav button{border:2px solid transparent;background:transparent;color:white;padding:9px 10px;font-weight:900;font-size:11px;letter-spacing:.6px}
+.nav{
+  display:flex;
+  gap:2px;
+  flex-wrap:nowrap;
+  justify-content:flex-end;
+  align-items:center;
+}
+.nav button{
+  border:2px solid transparent;
+  background:transparent;
+  color:white;
+  padding:8px 7px;
+  font-weight:900;
+  font-size:10px;
+  letter-spacing:.3px;
+  white-space:nowrap;
+  flex-shrink:0;
+}
 .nav button:hover,.nav button.active{background:var(--yellow);color:var(--ink);border-color:var(--ink);box-shadow:2px 2px 0 var(--ink);transform:translate(-1px,-1px)}
 main{max-width:1120px;margin:0 auto;padding:26px 20px 110px}
 .page{display:none;animation:pop .22s ease-out}
@@ -204,10 +220,16 @@ box-sizing: border-box;
 }
 .footer{margin-top:40px;text-align:center;font-size:11px;color:#788396}
 .comic-label{display:inline-block;background:var(--red);color:white;padding:6px 9px;font-weight:1000;transform:rotate(-2deg);border:2px solid var(--ink)}
-@media(max-width:760px){
+@media(max-width:950px){
  .header-inner{align-items:flex-start;flex-direction:column}.nav{justify-content:flex-start}
  .hero{grid-template-columns:1fr;min-height:unset}.hero-art{display:none}
  .tile-grid,.cards{grid-template-columns:1fr 1fr}
+ .nav{
+  justify-content:flex-start;
+  flex-wrap:nowrap;
+  width:100%;
+  overflow-x:auto;
+}
  @media (max-width: 600px) {
   #characters .cards {
     grid-template-columns: 1fr;
@@ -229,7 +251,7 @@ box-sizing: border-box;
 }
 
 /* VERSIÓN MÓVIL */
-@media (max-width: 600px) {
+@media (max-width: 950px) {
 .header-inner {
   display: flex;
   flex-direction: row;
@@ -258,6 +280,7 @@ box-sizing: border-box;
     align-items: stretch;
     gap: 6px;
     padding-top: 10px;
+    overflow:visible;
   }
 
   .nav.open {
@@ -269,7 +292,129 @@ box-sizing: border-box;
     text-align: left;
   }
 }
+/* BUZÓN DE CONSULTAS */
+
+.mailbox {
+  margin-top: 35px;
+  background: white;
+  border: 4px solid var(--ink);
+  box-shadow: var(--shadow);
+  padding: clamp(20px, 4vw, 32px);
+  position: relative;
+  overflow: hidden;
+}
+
+.mailbox::before {
+  content: "INCOMING!";
+  position: absolute;
+  top: 15px;
+  right: -27px;
+  background: var(--yellow);
+  color: var(--ink);
+  border: 2px solid var(--ink);
+  padding: 5px 35px;
+  font-size: 10px;
+  font-weight: 1000;
+  transform: rotate(35deg);
+}
+
+.mailbox-label {
+  display: inline-block;
+  background: var(--blue);
+  color: white;
+  border: 2px solid var(--ink);
+  padding: 6px 10px;
+  font-size: 10px;
+  font-weight: 1000;
+  letter-spacing: 1px;
+}
+
+.mailbox h2 {
+  margin: 16px 0 8px;
+  font-size: clamp(25px, 4vw, 36px);
+  text-transform: uppercase;
+}
+
+.mailbox > p {
+  max-width: 650px;
+  color: #596579;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.mailbox-form {
+  margin-top: 22px;
+  display: grid;
+  gap: 15px;
+}
+
+.mailbox-field label {
+  display: block;
+  margin-bottom: 7px;
+  font-size: 11px;
+  font-weight: 1000;
+  text-transform: uppercase;
+  letter-spacing: .6px;
+}
+
+.mailbox-field input,
+.mailbox-field textarea {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  border: 3px solid var(--ink);
+  background: #f5f7fb;
+  color: var(--ink);
+  outline: none;
+  resize: vertical;
+}
+
+.mailbox-field input:focus,
+.mailbox-field textarea:focus {
+  background: white;
+  box-shadow: 3px 3px 0 var(--yellow);
+}
+
+.mailbox-field textarea {
+  min-height: 130px;
+}
+
+.mailbox-help {
+  display: block;
+  margin-top: 5px;
+  color: var(--muted);
+  font-size: 10px;
+}
+
+.mailbox-submit {
+  justify-self: start;
+}
+
+.mailbox-message {
+  min-height: 20px;
+  margin: 0;
+  font-size: 12px;
+  font-weight: bold;
+  line-height: 1.5;
+}
+
+.mailbox-submit:disabled {
+  opacity: .6;
+  cursor: wait;
+}
+
+@media(max-width: 600px) {
+  .mailbox::before {
+    right: -34px;
+    top: 12px;
+  }
+
+  .mailbox-submit {
+    width: 100%;
+  }
+}
 </style>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body>
 
@@ -295,6 +440,7 @@ box-sizing: border-box;
    <button data-page="characters" onclick="go('characters');closeMenu()">03 · PERSONAJES</button>
    <button data-page="news" onclick="go('news');closeMenu()">04 · TABLÓN</button>
    <button data-page="classified" onclick="go('classified');closeMenu()" title="Archivo reservado. Pista: el grito de un héroe que supera sus límites.">05 · CLASSIFIED</button>
+   <button data-page="mailbox" onclick="go('mailbox');closeMenu()">06 · BUZÓN</button>
   </nav>
 
  </div>
@@ -322,8 +468,11 @@ box-sizing: border-box;
   <article class="tile"><span class="num">03 / ROSTER</span><h3>Personajes</h3><p>Descubre quiénes integran la academia y qué lugares están disponibles.</p></article>
   <article class="tile"><span class="num">04 / BULLETIN</span><h3>Tablón</h3><p>Anuncios, eventos, novedades y comunicados de la administración.</p></article>
   <article class="tile"><span class="num">05 / RESTRICTED</span><h3>Classified</h3><p> [INFORMACIÓN CLASIFICADA].</p></article>
+  <article class="tile"><span class="num">06 / INCOMING</span><h3>Buzón de consultas</h3><p>¿Tenés dudas sobre la academia? Dejá tu mensaje para la administración.</p></article>
  </div>
  <div class="panel"><h2>🌟 Tres mundos. Una academia.</h2><span class="tag">GENSHIN IMPACT</span><span class="tag">HONKAI: STAR RAIL</span><span class="tag">ZENLESS ZONE ZERO</span><p>Los personajes de HoYoverse llegan a una sociedad organizada alrededor de héroes, entrenamiento y desafíos. Esta es la puerta de entrada a nuestra historia.</p></div>
+
+</div>
 </section>
 
 <section id="universe" class="page">
@@ -385,26 +534,96 @@ box-sizing: border-box;
  </div>
 </section>
 
+
 <section id="classified" class="page">
- <span class="comic-label">FILE 05 · RESTRICTED ACCESS</span>
- <div class="panel secret">
-  <div class="secret-lock">🔒</div>
-  <h2>CLASSIFIED ACCESS</h2>
-  <p> Este archivo contiene información reservada para integrantes autorizados de Teyvat Hero Academy.</p>
-  <p><b>Introduce la clave de acceso para desbloquear los canales de comunicación.</b></p>
-  <form id="pass-form">
-   <input id="pass-input" type="password" placeholder="ACCESS CODE" autocomplete="off" aria-label="Código de acceso">
-   <button class="btn red" type="submit">UNLOCK FILE</button>
-  </form>
-  <p id="pass-message" role="status" aria-live="polite"></p>
-  <div class="secret-result" id="secret-result">
-   <h3>✓ ACCESS GRANTED</h3>
-   <p>¡Bienvenido/a! Estos son los accesos al grupo:</p>
-   <p><a class="btn blue" href="https://chat.whatsapp.com/REEMPLAZAR_ENLACE_1" target="_blank" rel="noopener">WHATSAPP · GRUPO PRINCIPAL ↗</a></p>
-   <p><a class="btn blue" href="https://chat.whatsapp.com/REEMPLAZAR_ENLACE_2" target="_blank" rel="noopener">WHATSAPP · ANUNCIOS ↗</a></p>
-   <small>Reemplazá los enlaces de ejemplo por las invitaciones reales.</small>
+  <span class="comic-label">FILE 05 · RESTRICTED ACCESS</span>
+
+  <div class="panel secret">
+    <div class="secret-lock">🔒</div>
+    <h2>CLASSIFIED ACCESS</h2>
+    <p>Este archivo contiene información reservada para integrantes autorizados de Teyvat Hero Academy.</p>
+    <p><b>Introduce la clave de acceso para desbloquear los canales de comunicación.</b></p>
+
+    <form id="pass-form">
+      <input id="pass-input" type="password" placeholder="ACCESS CODE" autocomplete="off" aria-label="Código de acceso">
+      <button class="btn red" type="submit">UNLOCK FILE</button>
+    </form>
+
+    <p id="pass-message" role="status" aria-live="polite"></p>
+
+    <div class="secret-result" id="secret-result">
+      <h3>✓ ACCESS GRANTED</h3>
+      <p>¡Bienvenido/a! Estos son los accesos al grupo:</p>
+      <p><a class="btn blue" href="https://chat.whatsapp.com/REEMPLAZAR_ENLACE_1" target="_blank" rel="noopener">WHATSAPP · GRUPO PRINCIPAL ↗</a></p>
+      <p><a class="btn blue" href="https://chat.whatsapp.com/REEMPLAZAR_ENLACE_2" target="_blank" rel="noopener">WHATSAPP · ANUNCIOS ↗</a></p>
+      <small>Reemplazá los enlaces de ejemplo por las invitaciones reales.</small>
+    </div>
   </div>
- </div>
+</section>
+
+
+<section id="mailbox" class="page">
+  <span class="comic-label">FILE 06 · INCOMING TRANSMISSIONS</span>
+
+  <div class="mailbox">
+    <span class="mailbox-label">INCOMING MESSAGE</span>
+
+    <h2>¡Tenemos el buzón abierto!</h2>
+
+    <p>
+      ¿Tenés alguna duda sobre la academia? ¿Querés consultar algo antes
+      de ingresar o necesitás comunicarte con la administración?
+      ¡Dejanos tu mensaje! Lo revisaremos a la brevedad.
+    </p>
+
+    <form id="mailbox-form" class="mailbox-form">
+      <div class="mailbox-field">
+        <label for="mailbox-name">Tu nombre o alias</label>
+        <input
+          id="mailbox-name"
+          type="text"
+          maxlength="80"
+          placeholder="¿Cómo te llamamos?"
+          required
+        >
+      </div>
+
+      <div class="mailbox-field">
+        <label for="mailbox-question">Tu consulta</label>
+        <textarea
+          id="mailbox-question"
+          maxlength="2000"
+          placeholder="Escribí tu mensaje aquí..."
+          required
+        ></textarea>
+        <small class="mailbox-help">Máximo 2000 caracteres.</small>
+      </div>
+
+      <button class="btn mailbox-submit" id="mailbox-submit" type="submit">
+      ¡ENVIAR CONSULTA! ↗
+      </button>
+      <p
+        id="mailbox-message"
+        class="mailbox-message"
+        role="status"
+        aria-live="polite"
+      ></p>
+    </form>
+  </div>
+
+  <div class="panel">
+    <h3>¡Un pequeño recordatorio!</h3>
+    <p>
+      Este buzón está destinado a consultas sobre el funcionamiento
+      del grupo, la ambientación, los personajes y el ingreso a la
+      academia. Para asuntos personales, la administración podrá
+      continuar la conversación por WhatsApp.
+    </p>
+  </div>
+</section>
+
+
+</div>
 </section>
 <div class="footer">TEYVAT HERO ACADEMY · APOLLO ROLEPLAY COMMUNITY </div>
 </main>
@@ -618,7 +837,91 @@ function closeMenu() {
   button.setAttribute('aria-label', 'Abrir menú');
   button.textContent = '☰';
 }
+
+/* ==========================================
+   BUZÓN PÚBLICO DE CONSULTAS
+========================================== */
+
+const THA_SUPABASE_URL = 'https://uvxxqmsvyupiitbngitk.supabase.co';
+
+const THA_SUPABASE_KEY = 'sb_publishable_SslTd9BJzN3-My80_BvISA_fjeTxtxq';
+
+const thaSupabase = window.supabase.createClient(
+  THA_SUPABASE_URL,
+  THA_SUPABASE_KEY,
+  {
+    auth: {
+      persistSession: false,
+      autoRefreshToken: false,
+      detectSessionInUrl: false
+    }
+  }
+);
+
+
+const mailboxForm = document.getElementById('mailbox-form');
+const mailboxSubmit = document.getElementById('mailbox-submit');
+const mailboxMessage = document.getElementById('mailbox-message');
+
+mailboxForm.addEventListener('submit', async (event) => {
+  event.preventDefault();
+
+  const nombre = document.getElementById('mailbox-name').value.trim();
+  const pregunta = document.getElementById('mailbox-question').value.trim();
+
+  if (!nombre || !pregunta) {
+    mailboxMessage.textContent = '¡Completá ambos campos antes de enviar!';
+    mailboxMessage.style.color = '#c52e36';
+    return;
+  }
+
+  if (nombre.length > 80 || pregunta.length > 2000) {
+    mailboxMessage.textContent = 'El mensaje supera el límite permitido.';
+    mailboxMessage.style.color = '#c52e36';
+    return;
+  }
+
+  mailboxSubmit.disabled = true;
+  mailboxSubmit.textContent = 'ENVIANDO...';
+
+  mailboxMessage.textContent = 'Transmitiendo consulta...';
+  mailboxMessage.style.color = 'var(--blue)';
+
+  try {
+    const { error } = await thaSupabase
+      .from('consultas')
+      .insert([
+        {
+          nombre: nombre,
+          pregunta: pregunta
+        }
+      ]);
+
+    if (error) throw error;
+
+    mailboxForm.reset();
+
+    mailboxMessage.textContent =
+      '¡CONSULTA ENVIADA! La administración recibió tu mensaje.';
+
+    mailboxMessage.style.color = '#216a35';
+
+  } catch (error) {
+    console.error('DETALLES DEL ERROR:', JSON.stringify(error, null, 2));
+
+    mailboxMessage.textContent =
+      'No se pudo enviar el mensaje. Intentá nuevamente más tarde.';
+
+    mailboxMessage.style.color = '#c52e36';
+
+  } finally {
+    mailboxSubmit.disabled = false;
+    mailboxSubmit.textContent = '¡ENVIAR CONSULTA! ↗';
+  }
+});
+
 </script>
+
 <style>
 .music button {
   flex-shrink: 0;
