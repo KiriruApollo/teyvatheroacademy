@@ -510,18 +510,59 @@ box-sizing: border-box;
   </div>
 </div>
  </div>
- <div class="section-head"><div><span class="comic-label">CHOOSE YOUR DESTINY</span><h2>Explorá la academia</h2></div></div>
- <div class="tile-grid">
-  <article class="tile"><span class="num">01 / LORE</span><h3>El universo</h3><p>Conocé la ambientación, las reglas y como ingresar en el grupo.</p></article>
-  <article class="tile"><span class="num">02 / GUIDE</span><h3>Reglamento</h3><p>Todo lo necesario para comprender los limites de los heroes.</p></article>
-  <article class="tile"><span class="num">03 / ROSTER</span><h3>Personajes</h3><p>Descubre quiénes integran la academia y qué lugares están disponibles.</p></article>
-  <article class="tile"><span class="num">04 / BULLETIN</span><h3>Tablón</h3><p>Anuncios, eventos, novedades y comunicados de la administración.</p></article>
-  <article class="tile"><span class="num">05 / RESTRICTED</span><h3>Classified</h3><p> [INFORMACIÓN CLASIFICADA].</p></article>
-  <article class="tile"><span class="num">06 / INCOMING</span><h3>Buzón de consultas</h3><p>¿Tenés dudas sobre la academia? Dejá tu mensaje para la administración.</p></article>
- </div>
- <div class="panel"><h2>🌟 Tres mundos. Una academia.</h2><span class="tag">GENSHIN IMPACT</span><span class="tag">HONKAI: STAR RAIL</span><span class="tag">ZENLESS ZONE ZERO</span><p>Los personajes de HoYoverse llegan a una sociedad organizada alrededor de héroes, entrenamiento y desafíos. Esta es la puerta de entrada a nuestra historia.</p></div>
-
+<div class="section-head">
+  <div>
+    <span class="comic-label">CHOOSE YOUR DESTINY</span>
+    <h2>Explorá la academia</h2>
+  </div>
 </div>
+
+<div class="tile-grid">
+  <article class="tile" role="button" tabindex="0" onclick="go('universe')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();go('universe')}">
+    <span class="num">01 / LORE</span>
+    <h3>El universo</h3>
+    <p>Conocé la ambientación, las reglas y como ingresar en el grupo.</p>
+  </article>
+
+  <article class="tile" role="button" tabindex="0" onclick="go('rules')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();go('rules')}">
+    <span class="num">02 / GUIDE</span>
+    <h3>Reglamento</h3>
+    <p>Todo lo necesario para comprender los limites de los heroes.</p>
+  </article>
+
+  <article class="tile" role="button" tabindex="0" onclick="go('characters')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();go('characters')}">
+    <span class="num">03 / ROSTER</span>
+    <h3>Personajes</h3>
+    <p>Descubre quiénes integran la academia y qué lugares están disponibles.</p>
+  </article>
+
+  <article class="tile" role="button" tabindex="0" onclick="go('news')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();go('news')}">
+    <span class="num">04 / BULLETIN</span>
+    <h3>Tablón</h3>
+    <p>Anuncios, eventos, novedades y comunicados de la administración.</p>
+  </article>
+
+  <article class="tile" role="button" tabindex="0" onclick="go('classified')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();go('classified')}">
+    <span class="num">05 / RESTRICTED</span>
+    <h3>Classified</h3>
+    <p>[INFORMACIÓN CLASIFICADA].</p>
+  </article>
+
+  <article class="tile" role="button" tabindex="0" onclick="go('mailbox')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();go('mailbox')}">
+    <span class="num">06 / INCOMING</span>
+    <h3>Buzón de consultas</h3>
+    <p>¿Tenés dudas sobre la academia? Dejá tu mensaje para la administración.</p>
+  </article>
+</div>
+
+<div class="panel">
+  <h2>🌟 Tres mundos. Una academia.</h2>
+  <span class="tag">GENSHIN IMPACT</span>
+  <span class="tag">HONKAI: STAR RAIL</span>
+  <span class="tag">ZENLESS ZONE ZERO</span>
+  <p>Los personajes de HoYoverse llegan a una sociedad organizada alrededor de héroes, entrenamiento y desafíos. Esta es la puerta de entrada a nuestra historia.</p>
+</div>
+```
 </section>
 
 <section id="universe" class="page">
@@ -1261,6 +1302,20 @@ mailboxForm.addEventListener('submit', async (event) => {
   place-items: center;
   line-height: 1;
   white-space: nowrap;
+}
+.tile[role="button"] {
+  cursor: pointer;
+  transition: transform .18s ease, box-shadow .18s ease;
+}
+
+.tile[role="button"]:hover {
+  transform: translate(-3px, -3px);
+  box-shadow: 8px 8px 0 var(--ink);
+}
+
+.tile[role="button"]:focus-visible {
+  outline: 3px dashed var(--red);
+  outline-offset: 5px;
 }
 </style>
 </body>
