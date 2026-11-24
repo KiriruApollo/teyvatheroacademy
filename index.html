@@ -1,14 +1,18 @@
 <!doctype html>
 <html lang="es">
 <head>
-<link rel="icon" type="image/png" href="assets/imagenes/favicon.png">
 <meta charset="utf-8">
+<link rel="icon" type="image/png" href="assets/imagenes/favicon.png">
+<meta name="description" content="Teyvat Hero Academy: grupo de rol de héroes con personajes de Genshin Impact, Honkai: Star Rail y Zenless Zone Zero.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Teyvat Hero Academy">
+<meta property="og:description" content="Un nuevo universo, nuevas alianzas. Una academia donde héroes de distintos mundos escriben una historia en común.">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#1f4e91">
 <title>Teyvat Hero Academy</title>
 <style>
 :root{
-  --blue:#20549a; --blue2:#2f7ac2; --yellow:#ffd447; --red:#e94b4b;
+  --blue:#20549a; --blue2:#2f7ac2; --yellow:#ffd447; --red:#d03a3a;
   --ink:#172235; --paper:#fffdf5; --muted:#667085; --line:#172235;
   --shadow:5px 5px 0 var(--ink);
 }
@@ -41,7 +45,7 @@ button{cursor:pointer}
 .nav{
   display:flex;
   gap:2px;
-  flex-wrap:nowrap;
+  flex-wrap:wrap;
   justify-content:flex-end;
   align-items:center;
 }
@@ -51,7 +55,7 @@ button{cursor:pointer}
   color:white;
   padding:8px 7px;
   font-weight:900;
-  font-size:10px;
+  font-size:11px;
   letter-spacing:.3px;
   white-space:nowrap;
   flex-shrink:0;
@@ -113,13 +117,13 @@ box-sizing: border-box;
 .tile-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}
 .tile{background:white;border:3px solid var(--ink);box-shadow:4px 4px 0 var(--ink);padding:18px;min-height:145px;position:relative}
 .tile:nth-child(3n+1){border-top:8px solid var(--red)}.tile:nth-child(3n+2){border-top:8px solid var(--yellow)}.tile:nth-child(3n){border-top:8px solid var(--blue2)}
-.tile .num{font-size:11px;font-weight:1000;color:var(--muted);letter-spacing:2px}
+.tile .num{font-size:12px;font-weight:1000;color:var(--muted);letter-spacing:2px}
 .tile h3{margin:9px 0 7px;font-size:19px;text-transform:uppercase}
 .tile p{margin:0;color:#596579;font-size:13px;line-height:1.5}
 .panel{background:var(--paper);border:3px solid var(--ink);box-shadow:var(--shadow);padding:clamp(18px,3vw,30px);margin-top:20px}
 .panel h2,.panel h3{margin-top:0;text-transform:uppercase}
 .panel p,.panel li{line-height:1.65}
-.tag{display:inline-block;background:#e8effa;border:1px solid #9bb4d7;padding:5px 8px;margin:3px;font-size:11px;font-weight:900}
+.tag{display:inline-block;background:#e8effa;border:1px solid #9bb4d7;padding:5px 8px;margin:3px;font-size:12px;font-weight:900}
 .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}
 .character{background:white;border:3px solid var(--ink);box-shadow:4px 4px 0 var(--ink);overflow:hidden}
 
@@ -143,7 +147,7 @@ box-sizing: border-box;
 }
 
 .character .details{padding:14px}.character h3{margin:0 0 5px;text-transform:uppercase}.character p{font-size:13px;color:#5b6574;line-height:1.45;margin:5px 0}
-.status{display:inline-block;padding:5px 8px;background:#e8f6e9;color:#216a35;font-size:10px;font-weight:1000;text-transform:uppercase}
+.status{display:inline-block;padding:5px 8px;background:#e8f6e9;color:#216a35;font-size:12px;font-weight:1000;text-transform:uppercase}
 .rules{counter-reset:rule;list-style:none;padding:0}
 .rules li{counter-increment:rule;padding:12px 12px 12px 52px;margin:10px 0;background:white;border:2px solid var(--ink);position:relative}
 .rules li:before{content:counter(rule,decimal-leading-zero);position:absolute;left:12px;top:10px;background:var(--yellow);border:2px solid var(--ink);padding:5px;font-weight:1000}
@@ -186,7 +190,7 @@ box-sizing: border-box;
 .music small {
   display:block;
   color:#c8d2e1;
-  font-size:10px;
+  font-size:12px;
   white-space:nowrap;
   overflow:hidden;
   text-overflow:ellipsis;
@@ -197,8 +201,6 @@ box-sizing: border-box;
   background:var(--yellow);
   color:var(--ink);
   font-weight:1000;
-  width:34px;
-  height:32px;
   flex:0 0 auto;
   cursor:pointer;
 }
@@ -218,32 +220,15 @@ box-sizing: border-box;
     width:48px;
   }
 }
-.footer{margin-top:40px;text-align:center;font-size:11px;color:#788396}
+.footer{margin-top:40px;text-align:center;font-size:12px;color:#5f6b7d}
 .comic-label{display:inline-block;background:var(--red);color:white;padding:6px 9px;font-weight:1000;transform:rotate(-2deg);border:2px solid var(--ink)}
 @media(max-width:950px){
- .header-inner{align-items:flex-start;flex-direction:column}.nav{justify-content:flex-start}
  .hero{grid-template-columns:1fr;min-height:unset}.hero-art{display:none}
- .tile-grid,.cards{
-  grid-template-columns:repeat(2,minmax(0,1fr));
-  width:100%;
+ .tile-grid,.cards{grid-template-columns:repeat(2,minmax(0,1fr));width:100%}
+ .tile{min-width:0;overflow-wrap:anywhere}
 }
-
-.tile{
-  min-width:0;
-  box-sizing:border-box;
-  overflow-wrap:anywhere;
-}
- .nav{
-  justify-content:flex-start;
-  flex-wrap:nowrap;
-  width:100%;
-  overflow-x:auto;
-}
- @media (max-width: 600px) {
-  #characters .cards {
-    grid-template-columns: 1fr;
-  }
-}
+@media(max-width:600px){
+ .tile-grid,.cards{grid-template-columns:1fr}
 }
 /* MENÚ HAMBURGUESA */
 .menu-toggle {
@@ -260,46 +245,13 @@ box-sizing: border-box;
 }
 
 /* VERSIÓN MÓVIL */
-@media (max-width: 950px) {
-.header-inner {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: center;
-  gap: 10px;
-}
-
-.brand {
-  flex: 0 1 auto;
-  margin-right: auto;
-}
-
-.menu-toggle {
-  display: grid;
-  place-items: center;
-  margin: 0;
-  flex-shrink: 0;
-}
-
-  .nav {
-    display: none;
-    flex-basis: 100%;
-    flex-direction: column;
-    align-items: stretch;
-    gap: 6px;
-    padding-top: 10px;
-    overflow:visible;
-  }
-
-  .nav.open {
-    display: flex;
-  }
-
-  .nav button {
-    width: 100%;
-    text-align: left;
-  }
+@media (max-width:1100px){
+ .header-inner{flex-wrap:wrap;gap:10px}
+ .brand{margin-right:auto}
+ .menu-toggle{display:grid;place-items:center;flex-shrink:0}
+ .nav{display:none;flex-basis:100%;flex-direction:column;flex-wrap:nowrap;align-items:stretch;gap:6px;padding-top:10px}
+ .nav.open{display:flex}
+ .nav button{width:100%;text-align:left;font-size:12px;padding:10px 8px}
 }
 /* BUZÓN DE CONSULTAS */
 
@@ -392,7 +344,7 @@ box-sizing: border-box;
   display: block;
   margin-top: 5px;
   color: var(--muted);
-  font-size: 10px;
+  font-size: 12px;
 }
 
 .mailbox-submit {
@@ -462,6 +414,38 @@ box-sizing: border-box;
   font-weight: 700;
   letter-spacing: 1px;
 }
+
+.music button {
+  flex-shrink: 0;
+  min-width: 40px;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  display: grid;
+  place-items: center;
+  line-height: 1;
+  white-space: nowrap;
+}
+a.tile {
+  cursor: pointer;
+  transition: transform .18s ease, box-shadow .18s ease;
+}
+
+a.tile:hover {
+  transform: translate(-3px, -3px);
+  box-shadow: 8px 8px 0 var(--ink);
+}
+
+a.tile:focus-visible {
+  outline: 3px dashed var(--red);
+  outline-offset: 5px;
+}
+
+a.tile{display:block;color:inherit;text-decoration:none}
+.btn.soon{background:#dfe6f2;color:#3d4a5f;cursor:not-allowed;flex-wrap:wrap}
+.btn.soon:hover{transform:none;box-shadow:4px 4px 0 var(--ink)}
+.soon-tag{background:var(--red);color:#fff;border:2px solid var(--ink);padding:3px 7px;font-size:11px;transform:rotate(-3deg)}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.page{animation:none}.btn,a.tile{transition:none}}
 </style>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
@@ -470,7 +454,7 @@ box-sizing: border-box;
 <header class="site-header">
  <div class="header-inner">
 
-  <a class="brand" href="#" onclick="go('home');return false">
+  <a class="brand" href="#home" onclick="closeMenu()">
    <span class="brand-mark">THA</span>
    <span>TEYVAT HERO ACADEMY<small>MULTIVERSE HERO RP GROUP</small></span>
   </a>
@@ -518,41 +502,41 @@ box-sizing: border-box;
 </div>
 
 <div class="tile-grid">
-  <article class="tile" role="button" tabindex="0" onclick="go('universe')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();go('universe')}">
+  <a class="tile" href="#universe">
     <span class="num">01 / LORE</span>
     <h3>El universo</h3>
-    <p>Conocé la ambientación, las reglas y como ingresar en el grupo.</p>
-  </article>
+    <p>Conocé la ambientación, las reglas y cómo ingresar en el grupo.</p>
+  </a>
 
-  <article class="tile" role="button" tabindex="0" onclick="go('rules')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();go('rules')}">
+  <a class="tile" href="#rules">
     <span class="num">02 / GUIDE</span>
     <h3>Reglamento</h3>
-    <p>Todo lo necesario para comprender los limites de los heroes.</p>
-  </article>
+    <p>Todo lo necesario para comprender los límites de los héroes.</p>
+  </a>
 
-  <article class="tile" role="button" tabindex="0" onclick="go('characters')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();go('characters')}">
+  <a class="tile" href="#characters">
     <span class="num">03 / ROSTER</span>
     <h3>Personajes</h3>
-    <p>Descubre quiénes integran la academia y qué lugares están disponibles.</p>
-  </article>
+    <p>Descubrí quiénes integran la academia y qué lugares están disponibles.</p>
+  </a>
 
-  <article class="tile" role="button" tabindex="0" onclick="go('news')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();go('news')}">
+  <a class="tile" href="#news">
     <span class="num">04 / BULLETIN</span>
     <h3>Tablón</h3>
     <p>Anuncios, eventos, novedades y comunicados de la administración.</p>
-  </article>
+  </a>
 
-  <article class="tile" role="button" tabindex="0" onclick="go('classified')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();go('classified')}">
+  <a class="tile" href="#classified">
     <span class="num">05 / RESTRICTED</span>
     <h3>Classified</h3>
     <p>[INFORMACIÓN CLASIFICADA].</p>
-  </article>
+  </a>
 
-  <article class="tile" role="button" tabindex="0" onclick="go('mailbox')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();go('mailbox')}">
+  <a class="tile" href="#mailbox">
     <span class="num">06 / INCOMING</span>
     <h3>Buzón de consultas</h3>
     <p>¿Tenés dudas sobre la academia? Dejá tu mensaje para la administración.</p>
-  </article>
+  </a>
 </div>
 
 <div class="panel">
@@ -562,7 +546,6 @@ box-sizing: border-box;
   <span class="tag">ZENLESS ZONE ZERO</span>
   <p>Los personajes de HoYoverse llegan a una sociedad organizada alrededor de héroes, entrenamiento y desafíos. Esta es la puerta de entrada a nuestra historia.</p>
 </div>
-```
 </section>
 
 <section id="universe" class="page">
@@ -571,18 +554,18 @@ box-sizing: border-box;
  <div class="panel">
   <h2>Una nueva generación de héroes</h2>
   <p><em>Escuchame,</em> en una sociedad donde los héroes son parte fundamental de la vida cotidiana, personas provenientes de distintas tierras comienzan a cruzar sus caminos. La academia abre sus puertas para recibirlos, estudiar sus habilidades y prepararlos para un futuro lleno de desafíos.</p>
-  <p>Todos conocemos que cada universo corre por sus propios terrenos, mas en esta oportunidad, cada juego será el país de origen de nuestros estudiantes, quienes han decidido cruzar los limites para alcanzar la super academia de heroes.</p>
+  <p>Todos conocemos que cada universo corre por sus propios terrenos, mas en esta oportunidad, cada juego será el país de origen de nuestros estudiantes, quienes han decidido cruzar los límites para alcanzar la super academia de héroes.</p>
  </div>
  <div class="tile-grid">
-  <article class="tile"><span class="num">WORLD 01</span><h3>Teyvat</h3><p>Personajes provenientes de Genshin Impact, la ciudad principal es la Gran Teyvat, seguida de las 8 ciudades que la conforman, Mondstadt, Liyue, Inazuma, Sumeru, Fontaine, Nod Krai, Snezhnaya. ¿Qué? ¿Otra ciudad? No, te confundes. Esas son todas. </p></article>
-  <article class="tile"><span class="num">WORLD 02</span><h3>Star Rail</h3><p>Viajeros, personajes, trazacaminos de las estrellas, o la ciudad mas viva del mundo. Dividida en sus ciudades principales, Herta Espacial, El Luofu de Xianzhou, Penacony, Amphoreus y Plan Arcadia. ¿Qué? ¿Otra ciudad? No, te confundes. Esas son todas. </p></article>
-  <article class="tile"><span class="num">WORLD 03</span><h3>New Eridu</h3><p>Agentes y personajes de la metropoli Nueva Eridu, con sus pequeños territorios, como al Isla de la Quietud, Estación Omond, Distrito de Vyrium, Distrito de Buastrum, Villardiente. ¿Qué? ¿Otra ciudad? No, te confundes. Esas son todas. </p></article>
+  <article class="tile"><span class="num">WORLD 01</span><h3>Teyvat</h3><p>Personajes provenientes de Genshin Impact, la ciudad principal es la Gran Teyvat, seguida de las 8 ciudades que la conforman, Mondstadt, Liyue, Inazuma, Sumeru, Fontaine, Nod Krai, Snezhnaya. ¿Qué? ¿Otra ciudad? No, te confundís. Esas son todas. </p></article>
+  <article class="tile"><span class="num">WORLD 02</span><h3>Star Rail</h3><p>Viajeros, personajes, trazacaminos de las estrellas, o la ciudad más viva del mundo. Dividida en sus ciudades principales, Herta Espacial, El Luofu de Xianzhou, Penacony, Amphoreus y Plan Arcadia. ¿Qué? ¿Otra ciudad? No, te confundís. Esas son todas. </p></article>
+  <article class="tile"><span class="num">WORLD 03</span><h3>New Eridu</h3><p>Agentes y personajes de la metrópoli Nueva Eridu, con sus pequeños territorios, como la Isla de la Quietud, Estación Omond, Distrito de Vyrium, Distrito de Buastrum, Villardiente. ¿Qué? ¿Otra ciudad? No, te confundís. Esas son todas. </p></article>
  </div>
 
 
  <div class="panel">
   <h2>El universo de THA.</h2>
-  <p> Después de mucho tiempo entrenando adolescentes y lanzandolos al peligro que suponía la pelea contra villanos, se llegó al acuerdo de que la juventud no podía vivir con ese estres. La primera escuela en evolucionar de ese antiguo método fue Teyvat Hero Academy, la cual el día de hoy solo recibe jovenes adultos como parte de entrenamiento de heroes.</p><p> Con un curso intensivo de reglas, entrenamiento y todos los conocimientos que rigen en la sociedad de heroes, las nuevas generaciones se lanzan a su trabajo con el corazón ardiendo de deseo por salvar al resto, ¿estás listo para entrar tu también? </p>
+  <p> Después de mucho tiempo entrenando adolescentes y lanzándolos al peligro que suponía la pelea contra villanos, se llegó al acuerdo de que la juventud no podía vivir con ese estrés. La primera escuela en evolucionar de ese antiguo método fue Teyvat Hero Academy, la cual el día de hoy solo recibe jóvenes adultos como parte de entrenamiento de héroes.</p><p> Con un curso intensivo de reglas, entrenamiento y todos los conocimientos que rigen en la sociedad de héroes, las nuevas generaciones se lanzan a su trabajo con el corazón ardiendo de deseo por salvar al resto, ¿estás listo para entrar vos también? </p>
      </div>
 </section>
 
@@ -592,17 +575,17 @@ box-sizing: border-box;
  <div class="panel">
   <ol class="rules">
    <li><b> Conflictos fuera del grupo, nada de permitir que afecten el rol.</b> Separar conflictos entre personajes de las relaciones entre usuarios.</li>
-   <li><b> Se prohibe el metarol. </b> Solo conoces lo que ve tu personaje, lo que le cuentan o lo que lee. Cualquier reporte o visualización de metarol será sancionada. </li>
+   <li><b> Se prohíbe el metarol. </b> Solo conocés lo que ve tu personaje, lo que le cuentan o lo que lee. Cualquier reporte o visualización de metarol será sancionada. </li>
    <li><b> No te adelantes a los demás.</b> Acordar escenas importantes, combates y consecuencias con las personas involucradas.</li>
    <li><b> Respetar los grupos con sus funciones.</b> No se permite la conversación off rol en los grupos de rol, donde se encuentre un mensaje que incumpla esta indicación, será borrado sin previo aviso.</li>
    <li><b> No olvides la comunicación.</b> Avisar a la administración ante dudas, ausencias o conflictos. Ideas y propuestas también son bienvenidas.</li>
-   <li><b> Contador de mensajes. </b> Si bien el minimo de mensajes es de 25 semanales, un número sumamente bajo, se requiere participación en alguna de las clases que se dará en la semana, se requiere una participación de al menos 2 clases.</li>
-   <li><b> Roles +18 denegados. </b> Esta terminantemente prohibido el NSFW, son estudiantes de superheroes, no hay espacio para ese tipo de intimidades. Aun así el grupo solo acepta usuarios mayores de edad. </li>
-   <li><b> Nada de parejas. </b> No estan prohibidas, sin embargo, las relaciones son una responsabilidad. Tu intéres romantico, tu pareja, tu familia, son puntos débiles que dejaras a la vista para los ataques de villanos.</li>
-   <li><b> Profesores bloqueados. </b> Para evitar conflictos, complicaciones o confusiones, ningún usuario externo a la administración podrá colocar que su personaje sea profesor u heroe profesional (lo último con excepción de que se haya graduado.) </li>
-   <li><b> Eventos y Ataques. </b> Revisen la página periodicamente para actualizarse por festivales, concursos y entrenamientos. Los ataques villanos no tendrán un aviso, ellos no tienen un calendario de cuándo podrían destruir la sociedad. </li>
+   <li><b> Contador de mensajes. </b> Si bien el mínimo de mensajes es de 25 semanales, un número sumamente bajo, se requiere participación en alguna de las clases que se dará en la semana, se requiere una participación de al menos 2 clases.</li>
+   <li><b> Roles +18 denegados. </b> Está terminantemente prohibido el NSFW, son estudiantes de superheroes, no hay espacio para ese tipo de intimidades. Aun así el grupo solo acepta usuarios mayores de edad. </li>
+   <li><b> Nada de parejas. </b> No están prohibidas, sin embargo, las relaciones son una responsabilidad. Tu interés romántico, tu pareja, tu familia, son puntos débiles que dejarás a la vista para los ataques de villanos.</li>
+   <li><b> Profesores bloqueados. </b> Para evitar conflictos, complicaciones o confusiones, ningún usuario externo a la administración podrá colocar que su personaje sea profesor u héroe profesional (lo último con excepción de que se haya graduado.) </li>
+   <li><b> Eventos y Ataques. </b> Revisen la página periódicamente para actualizarse por festivales, concursos y entrenamientos. Los ataques villanos no tendrán un aviso, ellos no tienen un calendario de cuándo podrían destruir la sociedad. </li>
   </ol>
-  <p><em> Las reglas están sujetas a modificaciones dependiendo acciones emitidas en el grupo.</em></p>
+  <p><em> Las reglas están sujetas a modificaciones dependiendo de las acciones emitidas en el grupo.</em></p>
  </div>
 
  <div class="section-head"><div><h2>Reglamento en el Lobby</h2><p> Para entendernos todos.</p></div></div>
@@ -612,14 +595,14 @@ box-sizing: border-box;
    <li><b> Para la reserva. </b> Se solicita educación y cordialidad, sin un por favor y gracias, no se aceptan reservas. No se pueden tomar reservas en nombre de otra persona. </li>
    <li><b> Sobre responsabilidad. </b> El único con poder de mandar, dentro y fuera del rol, es el Admin. No tomen ningún liderazgo sin preguntar.</li>
    <li><b> Uso de Fonts. </b> No se aceptan fichas o agendados con fuentes especiales, pueden provocar complicaciones a la hora de leerse en distintos dispositivos. </li>
-   <li><b> Fisicos del personaje. </b> Puedes conservar las caracteristicas animales de tu personaje, inclusive si estas no son parte de su don. No se aceptan GB's de los personajes. </li>
+   <li><b> Físicos del personaje. </b> Podés conservar las características animales de tu personaje, inclusive si estas no son parte de su don. No se aceptan GB's de los personajes. </li>
    <li><b> Edades y aclaraciones. </b> La edad de los personajes debe rondar entre los 20 y 22 años, se permite hasta 23 dependiendo la fecha de cumpleaños. </li>
    <li><b> Personajes. </b> Consultar por NPCs disponibles para su uso, no todos están permitidos. Lo mismo con los personajes, consulten la posibilidad de personajes que aún no salen jugables. </li>
-   <li><b> Personajes pequeños. </b> No se permiten los personajes niños de ninguna de las franquicias, aun si les pones la edad adecuada, sepan comprender esa solicitud. </li>
-   <li><b> No eres el protagonista. </b> Todos los poderes que elijas colocar a tu personaje tienen que contar con dos debilidades, sean fisicas, emocionales o de resistencia.</li>
-   <li><b> Largo de las fichas. </b> Es solo para información minima, no se aceptarán fichas largas. El minimo y máximo del largo de las fichas esta determinado en las fichas de ejemplo de los NPCs bloqueados. </li>
+   <li><b> Personajes pequeños. </b> No se permiten los personajes niños de ninguna de las franquicias, aun si les ponés la edad adecuada, sepan comprender esa solicitud. </li>
+   <li><b> No eres el protagonista. </b> Todos los poderes que elijas colocar a tu personaje tienen que contar con dos debilidades, sean físicas, emocionales o de resistencia.</li>
+   <li><b> Largo de las fichas. </b> Es solo para información mínima, no se aceptarán fichas largas. El mínimo y máximo del largo de las fichas esta determinado en las fichas de ejemplo de los NPCs bloqueados. </li>
    </ol>
-  <p><em> Las reglas están sujetas a modificaciones dependiendo acciones emitidas en el grupo.</em></p>
+  <p><em> Las reglas están sujetas a modificaciones dependiendo de las acciones emitidas en el grupo.</em></p>
  </div>
 </section>
 
@@ -650,7 +633,7 @@ box-sizing: border-box;
     </div>
 
     <article class="character">
-      <div class="portrait">✦</div>
+      <div class="portrait" aria-hidden="true">✦</div>
       <div class="details">
         <span class="status">DISPONIBLE · EJEMPLO</span>
         <h3>Nombre aquí</h3>
@@ -663,7 +646,7 @@ box-sizing: border-box;
     </article>
 
     <article class="character">
-      <div class="portrait">✧</div>
+      <div class="portrait" aria-hidden="true">✧</div>
       <div class="details">
         <span class="status">DISPONIBLE · EJEMPLO</span>
         <h3>Nombre aquí</h3>
@@ -676,7 +659,7 @@ box-sizing: border-box;
     </article>
 
     <article class="character">
-      <div class="portrait">⚡</div>
+      <div class="portrait" aria-hidden="true">⚡</div>
       <div class="details">
         <span class="status">DISPONIBLE · EJEMPLO</span>
         <h3>Nombre aquí</h3>
@@ -700,7 +683,7 @@ box-sizing: border-box;
 
     <article class="character">
       <div class="portrait">
-        <img src="assets/imagenes/characters/genshin/varka1.webp" alt="Varka">
+        <img loading="lazy" decoding="async" src="assets/imagenes/characters/genshin/varka1.webp" alt="Varka">
       </div>
       <div class="details">
         <span class="status">BLOQUEADO · NPC</span>
@@ -716,7 +699,7 @@ box-sizing: border-box;
 
     <article class="character">
       <div class="portrait">
-        <img src="assets/imagenes/characters/genshin/dottore1.webp" alt="Zandik">
+        <img loading="lazy" decoding="async" src="assets/imagenes/characters/genshin/dottore1.webp" alt="Zandik">
       </div>
       <div class="details">
         <span class="status">BLOQUEADO · NPC</span>
@@ -733,7 +716,7 @@ box-sizing: border-box;
 
         <article class="character">
       <div class="portrait">
-        <img src="assets/imagenes/characters/genshin/xinyan1.webp" alt="Xinyan">
+        <img loading="lazy" decoding="async" src="assets/imagenes/characters/genshin/xinyan1.webp" alt="Xinyan">
       </div>
       <div class="details">
         <span class="status">BLOQUEADO · NPC</span>
@@ -748,7 +731,7 @@ box-sizing: border-box;
 
         <article class="character">
       <div class="portrait">
-        <img src="assets/imagenes/characters/genshin/chevreuse1.webp" alt="Chevreuse">
+        <img loading="lazy" decoding="async" src="assets/imagenes/characters/genshin/chevreuse1.webp" alt="Chevreuse">
       </div>
       <div class="details">
         <span class="status">BLOQUEADO · NPC</span>
@@ -763,7 +746,7 @@ box-sizing: border-box;
 
         <article class="character">
       <div class="portrait">
-        <img src="assets/imagenes/characters/genshin/jeht1.webp" alt="Jeht">
+        <img loading="lazy" decoding="async" src="assets/imagenes/characters/genshin/jeht1.webp" alt="Jeht">
       </div>
       <div class="details">
         <span class="status">BLOQUEADO · NPC</span>
@@ -778,7 +761,7 @@ box-sizing: border-box;
 
     <article class="character">
       <div class="portrait">
-        <img src="assets/imagenes/characters/honkaisr/welt_yang.webp" alt="Welt Yang">
+        <img loading="lazy" decoding="async" src="assets/imagenes/characters/honkaisr/welt_yang.webp" alt="Welt Yang">
       </div>
       <div class="details">
         <span class="status">BLOQUEADO · NPC</span>
@@ -794,37 +777,37 @@ box-sizing: border-box;
 
         <article class="character">
       <div class="portrait">
-        <img src="assets/imagenes/characters/honkaisr/arlan.webp" alt="Arlan">
+        <img loading="lazy" decoding="async" src="assets/imagenes/characters/honkaisr/arlan.webp" alt="Arlan">
       </div>
       <div class="details">
         <span class="status">BLOQUEADO · NPC</span>
         <h3>ARLAN</h3>
         <p><b>Origen:</b> Honkai: Star Rail.</p>
         <p><b>Nombre de Héroe:</b> Twinpulse. </p>
-        <p><b>Don: Vinculo. </b> Arlan puede establecer un vínculo con Peppy que les permite compartir sentidos, coordinar movimientos y transferirse parte de su resistencia física. Incluso pueden intercambiar posiciones a corta distancia.</p>
+        <p><b>Don: Vínculo. </b> Arlan puede establecer un vínculo con Peppy que les permite compartir sentidos, coordinar movimientos y transferirse parte de su resistencia física. Incluso pueden intercambiar posiciones a corta distancia.</p>
         <p><b>Edad:</b> 24 años. </p>
-        <p><b>Historia:</b> Arlan creció en Ciudad Espacial Herta, una metrópolis reconocida por sus avances tecnológicos y sus instituciones de investigación. Durante su juventud conoció a Peppy, un pequeño perro que terminó convirtiéndose en su compañero inseparable, conectándose a él y descubriendo su poder. Su don, <b>Vinculo,</b> le permite establecer una conexión especial con él, compartiendo sentidos, coordinando movimientos, siendo capaz incluso de cambiar lugares con él. </p> <p> Tras completar su formación y obtener su licencia profesional, Arlan comenzó su carrera como héroe, destacándose por su responsabilidad y su disposición a ponerse en peligro por los demás. </p>
+        <p><b>Historia:</b> Arlan creció en Ciudad Espacial Herta, una metrópolis reconocida por sus avances tecnológicos y sus instituciones de investigación. Durante su juventud conoció a Peppy, un pequeño perro que terminó convirtiéndose en su compañero inseparable, conectándose a él y descubriendo su poder. Su don, <b>Vínculo,</b> le permite establecer una conexión especial con él, compartiendo sentidos, coordinando movimientos, siendo capaz incluso de cambiar lugares con él. </p> <p> Tras completar su formación y obtener su licencia profesional, Arlan comenzó su carrera como héroe, destacándose por su responsabilidad y su disposición a ponerse en peligro por los demás. </p>
       </div>
     </article>
 
         <article class="character">
       <div class="portrait">
-        <img src="assets/imagenes/characters/honkaisr/hanya.webp" alt="Hayna">
+        <img loading="lazy" decoding="async" src="assets/imagenes/characters/honkaisr/hanya.webp" alt="Hanya">
       </div>
       <div class="details">
         <span class="status">BLOQUEADO · NPC</span>
-        <h3>HAYNA</h3>
+        <h3>HANYA</h3>
         <p><b>Origen:</b> Honkai: Star Rail.</p>
-        <p><b>Nombre de Héroe:</b> La Heroína Jueza: Hayna </p>
+        <p><b>Nombre de Héroe:</b> La Heroína Jueza: Hanya </p>
         <p><b>Don: Cadenas del Veredicto</b> Puede generar cadenas de energía sólida desde superficies cercanas, especialmente el suelo, y manipularlas a voluntad. Estas cadenas pueden emerger bajo los pies de sus objetivos, envolver sus extremidades o sujetarlos contra estructuras, permitiéndole inmovilizar a varios adversarios y controlar sus movimientos. También puede utilizarlas para bloquear caminos, crear barreras o limitar el espacio de combate. Si no come bien, las cadenas no serán muy precisas. </p>
         <p><b>Edad: </b> 29 años.</p>
-        <p><b>Historia:</b> Lo que impulsó a Hayna a dar el uso de su don a la comunidad no fue ver a un heroe inspirandola, sino ella misma. Mientras muchos veían las cadenas como una herramienta de combate, ella comenzó a interesarse por su potencial para detener amenazas sin necesidad de recurrir a la violencia. Aquella perspectiva despertó su curiosidad por la justicia y el funcionamiento de las leyes, llevándola a estudiar los procedimientos de captura y las responsabilidades de quienes hacen cumplir la ley. </p> <p> Con los años, Hanya consiguió convertirse en heroína profesional, especializándose en la detención y neutralización de criminales. Su seriedad, disciplina y particular sentido del deber le valieron el reconocimiento como La Heroína Jueza, título que utiliza como única identidad heroica.</p>
+        <p><b>Historia:</b> Lo que impulsó a Hanya a dar el uso de su don a la comunidad no fue ver a un héroe inspirándola, sino ella misma. Mientras muchos veían las cadenas como una herramienta de combate, ella comenzó a interesarse por su potencial para detener amenazas sin necesidad de recurrir a la violencia. Aquella perspectiva despertó su curiosidad por la justicia y el funcionamiento de las leyes, llevándola a estudiar los procedimientos de captura y las responsabilidades de quienes hacen cumplir la ley. </p> <p> Con los años, Hanya consiguió convertirse en heroína profesional, especializándose en la detención y neutralización de criminales. Su seriedad, disciplina y particular sentido del deber le valieron el reconocimiento como La Heroína Jueza, título que utiliza como única identidad heroica.</p>
       </div>
     </article>
 
         <article class="character">
       <div class="portrait">
-       <img src="assets/imagenes/characters/honkaisr/yukong.webp" alt="Yukong">
+       <img loading="lazy" decoding="async" src="assets/imagenes/characters/honkaisr/yukong.webp" alt="Yukong">
       </div>
       <div class="details">
         <span class="status">BLOQUEADO · NPC</span>
@@ -839,7 +822,7 @@ box-sizing: border-box;
 
     <article class="character">
       <div class="portrait">
-        <img src="assets/imagenes/characters/zenless/grace.webp" alt="Grace Howard">
+        <img loading="lazy" decoding="async" src="assets/imagenes/characters/zenless/grace.webp" alt="Grace Howard">
       </div>
       <div class="details">
         <span class="status">BLOQUEADO · NPC</span>
@@ -854,7 +837,7 @@ box-sizing: border-box;
     </article>
 
      <article class="character">
-      <div class="portrait"><img src="assets/imagenes/characters/zenless/hoshimi.webp" alt="Miyabi Hoshimi">
+      <div class="portrait"><img loading="lazy" decoding="async" src="assets/imagenes/characters/zenless/hoshimi.webp" alt="Miyabi Hoshimi">
 </div>
       <div class="details">
         <span class="status">BLOQUEADO · NPC</span>
@@ -869,7 +852,7 @@ box-sizing: border-box;
 
     <article class="character">
       <div class="portrait">
-        <img src="assets/imagenes/characters/zenless/anton.webp" alt="Anton Ivanov">
+        <img loading="lazy" decoding="async" src="assets/imagenes/characters/zenless/anton.webp" alt="Anton Ivanov">
       </div>
       <div class="details">
         <span class="status">BLOQUEADO · NPC</span>
@@ -884,13 +867,13 @@ box-sizing: border-box;
 
         <article class="character">
       <div class="portrait">
-        <img src="assets/imagenes/characters/zenless/pan_yinhu.webp" alt="Pan Yinhu">
+        <img loading="lazy" decoding="async" src="assets/imagenes/characters/zenless/pan_yinhu.webp" alt="Pan Yinhu">
       </div>
       <div class="details">
         <span class="status">BLOQUEADO · NPC</span>
         <h3>PAN YINHU</h3>
         <p><b>Origen:</b> Zenless Zone Zero.</p>
-        <p><b>Nombre de Héroe:</b> Heroe de artes marciales: Pan Po.</p>
+        <p><b>Nombre de Héroe:</b> Héroe de artes marciales: Pan Po.</p>
         <p><b>Don: Puño Celestial.</b> Pan puede acumular y concentrar energía en sus manos, envolviéndolas en una manifestación luminosa que incrementa enormemente la potencia de sus golpes. Esta energía puede liberarse mediante puñetazos, patadas y técnicas de artes marciales, generando impactos capaces de atravesar defensas resistentes y producir ondas de choque. Con suficiente concentración, también puede proyectar breves descargas de energía a corta distancia.</p>
         <p><b>Edad:</b> 30 años.</p>
         <p><b>Historia:</b> La vida de Pan Yinhu no comenzó con demasiadas alegrías. Durante buena parte de su infancia tuvo que sobrevivir en las calles, buscando entre la basura cualquier sobra que pudiera llevarse a la boca. A pesar de contar con un don capaz de otorgarle una fuerza extraordinaria, se negaba a utilizarlo para conseguir beneficios personales, pues no consideraba justo aprovecharse de sus capacidades para obtener algo que otros no podían conseguir. Su suerte cambió cuando un héroe local lo encontró hurgando entre los desperdicios de su dojo y, en lugar de echarlo, decidió acogerlo bajo su cuidado. Allí encontró un hogar, aprendió artes marciales y comenzó a entrenar su don, Puño Celestial, para convertirlo en una herramienta que pudiera utilizar en beneficio de los demás. </p> <p> Con los años, Pan decidió seguir los pasos de aquel hombre y convertirse en héroe profesional. Aunque su motivación nunca fue alcanzar la gloria ni convertirse en una figura legendaria, consideraba que el heroísmo era una profesión digna, con buenas oportunidades para construir una vida estable. Sin embargo, detrás de esa perspectiva práctica existe un propósito mucho más personal: ayudar a quienes atraviesan situaciones similares a las que él vivió, ofreciendo una mano a quienes no siempre tienen a quién acudir. Actualmente forma parte del Top 10 de Teyvat y, fuera de sus actividades profesionales, disfruta de la cocina, una pasión que nació de su propia necesidad de alimentarse adecuadamente y terminó convirtiéndose en uno de sus mayores placeres.</p>
@@ -899,7 +882,7 @@ box-sizing: border-box;
 
         <article class="character">
       <div class="portrait">
-         <img src="assets/imagenes/characters/zenless/ben.webp" alt="Ben Bigger">
+         <img loading="lazy" decoding="async" src="assets/imagenes/characters/zenless/ben.webp" alt="Ben Bigger">
       </div>
       <div class="details">
         <span class="status">BLOQUEADO · NPC</span>
@@ -947,7 +930,7 @@ box-sizing: border-box;
     <div class="secret-result" id="secret-result">
       <h3>✓ ACCESS GRANTED</h3>
       <p>¡Bienvenido/a! Estos son los accesos al grupo:</p>
-      <p><a class="btn blue" href="no_entrar_no_existe" target="_blank" rel="noopener">WHATSAPP · GRUPO PRINCIPAL ↗</a></p>
+      <p><span class="btn blue soon" aria-disabled="true">WHATSAPP · GRUPO PRINCIPAL <span class="soon-tag">PRÓXIMAMENTE</span></span></p>
       <p><a class="btn blue" href="https://whatsapp.com/channel/0029VbDl5B99cDDju26Gvz2i" target="_blank" rel="noopener">WHATSAPP · ANUNCIOS ↗</a></p>
       <small> El link del grupo aún no está disponible. </small>
     </div>
@@ -1014,23 +997,19 @@ box-sizing: border-box;
     </p>
   </div>
 </section>
-
-
-</div>
-</section>
-<div class="footer">TEYVAT HERO ACADEMY · APOLLO ROLEPLAY COMMUNITY </div>
+<div class="footer">TEYVAT HERO ACADEMY · APOLLO ROLEPLAY COMMUNITY.</div>
 </main>
 
-<div class="music" aria-label="Reproductor musical">
-  <button id="play" title="Reproducir o pausar">▶</button>
+<div class="music" role="region" aria-label="Reproductor musical">
+  <button id="play" title="Reproducir o pausar" aria-label="Reproducir o pausar">▶</button>
 
   <div class="music-meta">
     <strong>ACADEMY SOUNDTRACK</strong>
     <small id="track-name">Cargando playlist...</small>
   </div>
 
-  <button id="previous-track" title="Pista anterior">|◀</button>
-  <button id="next-track" title="Pista siguiente">▶|</button>
+  <button id="previous-track" title="Pista anterior" aria-label="Pista anterior">|◀</button>
+  <button id="next-track" title="Pista siguiente" aria-label="Pista siguiente">▶|</button>
 
   <input
     id="volume"
@@ -1040,6 +1019,7 @@ box-sizing: border-box;
     step=".01"
     value=".45"
     title="Volumen"
+    aria-label="Volumen"
   >
 
   <audio id="audio" preload="none"></audio>
@@ -1047,11 +1027,26 @@ box-sizing: border-box;
 
 <script>
 // Navegación tipo SPA: el reproductor permanece vivo al cambiar de sección.
-function go(page){
+function show(page){
  document.querySelectorAll('.page').forEach(p=>p.classList.toggle('active',p.id===page));
- document.querySelectorAll('.nav button').forEach(b=>b.classList.toggle('active',b.dataset.page===page));
- window.scrollTo({top:0,behavior:'smooth'});
+ document.querySelectorAll('.nav button').forEach(b=>{
+  const on=b.dataset.page===page;
+  b.classList.toggle('active',on);
+  if(on)b.setAttribute('aria-current','page');else b.removeAttribute('aria-current');
+ });
+ const nb=document.querySelector('.nav button[data-page="'+page+'"]');
+ document.title=(page==='home'||!nb)?'Teyvat Hero Academy':nb.textContent.replace(/^\d+\s·\s/,'')+' · Teyvat Hero Academy';
+ window.scrollTo({top:0,behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});
 }
+function isPage(id){const e=document.getElementById(id);return !!e&&e.classList.contains('page')}
+function go(page){if(location.hash==='#'+page)show(page);else location.hash=page}
+function route(first){
+  const h = location.hash.slice(1);
+  if (h && !isPage(h)) { location.replace('404.html'); return; }
+  if (h || !first) show(h || 'home');
+}
+window.addEventListener('hashchange', () => route(false));
+route(true);
 const ACCESS_CODE = 'KNIGHTBOREAS'; // Clave de ejemplo: podés cambiarla acá.
 document.getElementById('pass-form').addEventListener('submit',e=>{
  e.preventDefault();
@@ -1315,32 +1310,5 @@ mailboxForm.addEventListener('submit', async (event) => {
 
 </script>
 
-<style>
-.music button {
-  flex-shrink: 0;
-  min-width: 40px;
-  width: 40px;
-  height: 40px;
-  padding: 0;
-  display: grid;
-  place-items: center;
-  line-height: 1;
-  white-space: nowrap;
-}
-.tile[role="button"] {
-  cursor: pointer;
-  transition: transform .18s ease, box-shadow .18s ease;
-}
-
-.tile[role="button"]:hover {
-  transform: translate(-3px, -3px);
-  box-shadow: 8px 8px 0 var(--ink);
-}
-
-.tile[role="button"]:focus-visible {
-  outline: 3px dashed var(--red);
-  outline-offset: 5px;
-}
-</style>
 </body>
 </html>

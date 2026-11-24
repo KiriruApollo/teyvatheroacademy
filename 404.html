@@ -1,32 +1,29 @@
-
 <!doctype html>
 <html lang="es">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#1f4e91">
-
-<link rel="icon" type="image/png" href="assets/imagenes/favicon.png">
-
-  <title>404 · Teyvat Hero Academy</title>
+  <meta name="robots" content="noindex">
+  <link rel="icon" id="favicon" type="image/png" href="/teyvatheroacademy/assets/imagenes/favicon.png">
+  <title>404 · Página no encontrada · Teyvat Hero Academy</title>
 
   <style>
     :root {
       --blue:#20549a;
       --blue2:#2f7ac2;
       --yellow:#ffd447;
-      --red:#e94b4b;
+      --red:#d03a3a;
       --ink:#172235;
       --paper:#fffdf5;
     }
 
-    * {
-      box-sizing:border-box;
-    }
+    * { box-sizing:border-box; }
 
     body {
       margin:0;
       min-height:100vh;
+      min-height:100dvh;
       display:grid;
       place-items:center;
       padding:24px;
@@ -35,6 +32,18 @@
       background:
         radial-gradient(#20549a18 1.2px,transparent 1.2px) 0 0/12px 12px,
         #f5f7fb;
+    }
+
+    .sr-only {
+      position:absolute;
+      width:1px;
+      height:1px;
+      margin:-1px;
+      padding:0;
+      overflow:hidden;
+      clip:rect(0,0,0,0);
+      white-space:nowrap;
+      border:0;
     }
 
     .frame {
@@ -57,10 +66,7 @@
       background:radial-gradient(#ffffff2b 1.3px,transparent 1.3px) 0 0/11px 11px;
     }
 
-    .content {
-      position:relative;
-      z-index:1;
-    }
+    .content { position:relative; z-index:1; }
 
     /* IDENTIDAD THA */
 
@@ -95,7 +101,7 @@
 
     .brand small {
       display:block;
-      font-size:10px;
+      font-size:11px;
       letter-spacing:2px;
       color:#d9e8ff;
       margin-top:3px;
@@ -108,7 +114,7 @@
       background:var(--red);
       border:2px solid var(--ink);
       color:white;
-      font-size:11px;
+      font-size:12px;
       font-weight:1000;
       letter-spacing:1.6px;
       transform:rotate(-2deg);
@@ -171,53 +177,97 @@
       background:var(--yellow);
       color:var(--ink);
       text-decoration:none;
+      font-family:inherit;
       font-size:12px;
       font-weight:1000;
       letter-spacing:.5px;
       text-transform:uppercase;
+      cursor:pointer;
       transition:transform .12s,box-shadow .12s;
     }
 
-    .btn.secondary {
-      background:white;
-    }
+    .btn[hidden] { display:none; }
+    .btn.secondary { background:white; }
 
     .btn:hover {
       transform:translate(2px,2px);
       box-shadow:2px 2px 0 var(--ink);
     }
 
+    /* MENÚ DE SECCIONES */
+
+    .sections {
+      margin-top:32px;
+      padding-top:18px;
+      border-top:1px solid #ffffff55;
+    }
+
+    .sections-title {
+      display:block;
+      margin-bottom:12px;
+      color:#e8f1ff;
+      font-size:12px;
+      font-weight:900;
+      letter-spacing:1.2px;
+      text-transform:uppercase;
+    }
+
+    .sections ul {
+      list-style:none;
+      margin:0;
+      padding:0;
+      display:flex;
+      justify-content:center;
+      flex-wrap:wrap;
+      gap:10px;
+    }
+
+    .chip {
+      display:inline-block;
+      padding:9px 13px;
+      background:white;
+      color:var(--ink);
+      border:2px solid var(--ink);
+      box-shadow:3px 3px 0 var(--ink);
+      text-decoration:none;
+      font-size:12px;
+      font-weight:900;
+      text-transform:uppercase;
+      letter-spacing:.4px;
+    }
+
+    .chip:hover {
+      background:var(--yellow);
+      transform:translate(1px,1px);
+      box-shadow:2px 2px 0 var(--ink);
+    }
+
+    a:focus-visible,
+    button:focus-visible {
+      outline:3px dashed white;
+      outline-offset:4px;
+    }
+
     .foot {
-      margin-top:35px;
+      margin-top:30px;
       padding-top:15px;
       border-top:1px solid #ffffff55;
       color:#d4e4fa;
-      font-size:10px;
+      font-size:11px;
       letter-spacing:1.5px;
       font-weight:900;
     }
 
     @media(max-width:420px) {
-      body {
-        padding:14px;
-      }
+      body { padding:14px; }
+      .frame { padding:25px 17px; }
+      .number { letter-spacing:-6px; }
+      .brand { gap:8px; }
+      .brand small { font-size:10px; letter-spacing:1.5px; }
+    }
 
-      .frame {
-        padding:25px 17px;
-      }
-
-      .number {
-        letter-spacing:-6px;
-      }
-
-      .brand {
-        gap:8px;
-      }
-
-      .brand small {
-        font-size:9px;
-        letter-spacing:1.5px;
-      }
+    @media (prefers-reduced-motion:reduce) {
+      .btn,.chip { transition:none; }
     }
   </style>
 </head>
@@ -227,8 +277,8 @@
   <main class="frame">
     <div class="content">
 
-      <a class="brand" id="brand-home" href="/teyvatheroacademy/" aria-label="Volver al inicio">
-        <span class="brand-mark">THA</span>
+      <a class="brand" data-hash="" href="/teyvatheroacademy/">
+        <span class="brand-mark" aria-hidden="true">THA</span>
         <span>
           TEYVAT HERO ACADEMY
           <small>MULTIVERSE HERO RP GROUP</small>
@@ -239,9 +289,9 @@
         <span class="kicker">ALERTA · RUTA NO ENCONTRADA</span>
       </div>
 
-      <div class="number" aria-label="Error 404">404</div>
+      <div class="number" aria-hidden="true">404</div>
 
-      <h1>¡PLUS ULTRA...<br> PERO TE PERDISTE!</h1>
+      <h1><span class="sr-only">Error 404: </span>¡PLUS ULTRA...<br> PERO TE PERDISTE!</h1>
 
       <p>
         Parece que esta página salió de nuestro mapa dimensional.
@@ -249,17 +299,23 @@
         volver a la academia.
       </p>
 
-      <div class="burst">¡POW!</div>
+      <div class="burst" aria-hidden="true">¡POW!</div>
 
       <div class="actions">
-        <a class="btn" id="home-button" href="/teyvatheroacademy/">
-          ← Volver a la academia
-        </a>
-
-        <a class="btn secondary" href="javascript:history.back()">
-          Volver atrás
-        </a>
+        <a class="btn" data-hash="" href="/teyvatheroacademy/">← Volver a la academia</a>
+        <button class="btn secondary" id="back" type="button">Volver atrás</button>
       </div>
+
+      <nav class="sections" aria-label="Secciones de la academia">
+        <span class="sections-title">O andá directo a una sección</span>
+        <ul>
+          <li><a class="chip" data-hash="universe" href="/teyvatheroacademy/#universe">Universo</a></li>
+          <li><a class="chip" data-hash="rules" href="/teyvatheroacademy/#rules">Reglamento</a></li>
+          <li><a class="chip" data-hash="characters" href="/teyvatheroacademy/#characters">Personajes</a></li>
+          <li><a class="chip" data-hash="news" href="/teyvatheroacademy/#news">Tablón</a></li>
+          <li><a class="chip" data-hash="mailbox" href="/teyvatheroacademy/#mailbox">Buzón</a></li>
+        </ul>
+      </nav>
 
       <div class="foot">
         TEYVAT HERO ACADEMY · APOLLO ROLEPLAY COMMUNITY
@@ -269,11 +325,41 @@
   </main>
 
 <script>
-  // Detecta automáticamente la dirección principal del sitio.
-  const academyHome = new URL('/', window.location.origin).href;
+  // Si el sitio vive en /teyvatheroacademy/ (GitHub Pages) usa esa base;
+  // si está en un dominio propio, usa la raíz.
+  const BASE = location.pathname.startsWith('/teyvatheroacademy/')
+    ? '/teyvatheroacademy/'
+    : '/';
 
-  document.getElementById('brand-home').href = academyHome;
-  document.getElementById('home-button').href = academyHome;
+  document.querySelectorAll('a[data-hash]').forEach(a => {
+    a.href = BASE + (a.dataset.hash ? '#' + a.dataset.hash : '');
+  });
+
+  document.getElementById('favicon').href = BASE + 'assets/imagenes/favicon.png';
+
+  // "Volver atrás" solo tiene sentido si hay una página anterior.
+  const back = document.getElementById('back');
+  if (history.length < 2) {
+    back.hidden = true;
+  } else {
+    back.addEventListener('click', () => history.back());
+  }
+
+  // Direcciones que la gente suele adivinar → van directo a la sección.
+  const rutas = {
+    universo:'universe', universe:'universe',
+    reglamento:'rules', reglas:'rules', rules:'rules',
+    personajes:'characters', characters:'characters',
+    tablon:'news', news:'news',
+    buzon:'mailbox', mailbox:'mailbox'
+  };
+
+  const ultimo = (location.pathname.split('/').filter(Boolean).pop() || '')
+    .replace(/\.html?$/i, '')
+    .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+    .toLowerCase();
+
+  if (rutas[ultimo]) location.replace(BASE + '#' + rutas[ultimo]);
 </script>
 
 </body>
